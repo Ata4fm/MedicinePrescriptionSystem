@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from . import models
 from .models import Patient
 from .forms import AddPatientForm
@@ -17,7 +17,12 @@ def patient_view_detail(request, patient_code):
     return render(request,'patient_module/patient_details.html',context)
 
 def patient_add_view(request):
-    patient_form = AddPatientForm()
+    if request.method == 'POST':
+        patient_form = AddPatientForm(request.POST,)
+        if patient_form.is_valid():
+            return redirect('home')
+    else:
+        patient_form = AddPatientForm()
     context = {
         'patient_form': patient_form
     }

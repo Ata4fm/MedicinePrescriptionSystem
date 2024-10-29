@@ -4,96 +4,114 @@
 {% block body-title %}افزودن بیمار{% endblock %}
 
 {% block content %}
-	 <div class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12 col-xl-12">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="card">
-                    <div class="card-header pb-0">
-                      <h5>فرم ثبت نام بیمار</h5><span>لطفا اطلاعات بیمار را در داخل فرم وارد کرده و دکمه ثبت را وارد کنید.</span>
-                    </div>
-                    <div class="card-body">
-                      <form class="theme-form">
-                          <div class="mb-3 row">
-                          <label class="col-sm-3 col-form-label" for="inputEmail3">کد ملی</label>
-                          <div class="col-sm-9">
-                            <input class="form-control" id="inputEmail3" type="email" placeholder="ایمیل">
-                          </div>
-                        </div>
-                        <div class="mb-3 row">
-                          <label class="col-sm-3 col-form-label" for="inputEmail3">نام</label>
-                          <div class="col-sm-9">
-                            <input class="form-control" id="inputEmail3" type="email" placeholder="ایمیل">
-                          </div>
-                        </div>
-                        <div class="mb-3 row">
-                          <label class="col-sm-3 col-form-label" for="inputPassword3">نام خانوادگی</label>
-                          <div class="col-sm-9">
-                            <input class="form-control" id="inputPassword3" type="password" placeholder="رمز عبور خود را وارد کنید">
-                          </div>
-                        </div>
-                        <div class="mb-3 row">
-                          <label class="col-sm-3 col-form-label" for="inputPassword3">شماره تماس</label>
-                          <div class="col-sm-9">
-                            <input class="form-control" id="inputnumber" type="number" placeholder="شماره تماس">
-                          </div>
-                        </div>
-                        <div class="mb-3 row">
-                          <label class="col-sm-3 col-form-label" for="inputPassword3">سن</label>
-                          <div class="col-sm-9">
-                            <input class="form-control" id="url" type="text" placeholder="نام شرکت">
-                          </div>
-                        </div>
-                        <div class="mb-3 row">
-                          <label class="col-sm-3 col-form-label" for="inputPassword3">آدرس</label>
-                          <div class="col-sm-9">
-                            <input class="form-control" id="Website" type="url" placeholder="وبسایت">
-                          </div>
-                        </div>
-                          <div class="mb-3 row">
-                          <label class="col-sm-3 col-form-label" for="inputEmail3">جنسیت</label>
-                          <div class="col-sm-9">
-                            <input class="form-control" id="inputEmail3" type="email" placeholder="ایمیل">
-                          </div>
-                        </div>
-                        <div class="row mb-0">
-                          <label class="col-sm-3 col-form-label pb-0">سوابق بیماری</label>
-                          <div class="col-sm-9">
-                            <div class="mb-0">
-                              <div class="form-check form-check-inline checkbox checkbox-primary">
-                                <input class="form-check-input" id="inline-form-1" type="checkbox">
-                                <label class="form-check-label" for="inline-form-1">گزینه 1</label>
-                              </div>
-                              <div class="form-check form-check-inline checkbox checkbox-primary">
-                                <input class="form-check-input" id="inline-form-2" type="checkbox">
-                                <label class="form-check-label" for="inline-form-2">گزینه 2</label>
-                              </div>
-                                <div class="form-check form-check-inline checkbox checkbox-primary">
-                                <input class="form-check-input" id="inline-form-2" type="checkbox">
-                                <label class="form-check-label" for="inline-form-2">گزینه 3</label>
-                              </div>
-                                <div class="form-check form-check-inline checkbox checkbox-primary">
-                                <input class="form-check-input" id="inline-form-2" type="checkbox">
-                                <label class="form-check-label" for="inline-form-2">گزینه 4</label>
-                              </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <h5>فرم ثبت نام بیمار</h5><span>لطفا اطلاعات بیمار را در داخل فرم وارد کرده و دکمه ثبت را وارد کنید.</span>
                             </div>
-                          </div>
+                            <div class="card-body">
+                                <form class="theme-form" action="{% url 'add_patient' %}" method="post" >
+                                    {% csrf_token %}
+
+
+                                    <div class="mb-3 row ">
+                                        <div class="col-sm-3 col-form-label ">
+                                            {{ patient_form.code.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if patient_form.code.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ patient_form.code }}
+                                            {{ patient_form.code.errors }}
+                                        </div>
+                                    </div>
+
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-form-label">
+                                            {{ patient_form.firstname.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if patient_form.firstname.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ patient_form.firstname }}
+                                            {{ patient_form.firstname.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-form-label">
+                                            {{ patient_form.lastname.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if patient_form.lastname.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ patient_form.lastname }}
+                                            {{ patient_form.lastname.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-form-label">
+                                            {{ patient_form.phonenumber.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if patient_form.phonenumber.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ patient_form.phonenumber }}
+                                            {{ patient_form.phonenumber.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-form-label">
+                                            {{ patient_form.age.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if patient_form.age.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ patient_form.age }}
+                                            {{ patient_form.age.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-form-label">
+                                            {{ patient_form.information.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if patient_form.information.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ patient_form.information }}
+                                            {{ patient_form.information.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-form-label">
+                                            {{ patient_form.address.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if patient_form.address.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ patient_form.address }}
+                                            {{ patient_form.address.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-form-label">
+                                            {{ patient_form.gender.label_tag }}
+                                        </div>
+                                        <div class="col-sm-2 {% if patient_form.gender.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ patient_form.gender }}
+                                            {{ patient_form.gender.errors }}
+                                        </div>
+                                    </div>
+
+
+
+                                    <button type="submit" class="btn btn-primary">ارسال</button>
+
+                                </form>
+                            </div>
+
                         </div>
-
-
-                      </form>
                     </div>
-                    <div class="card-footer">
-                      <button class="btn btn-primary">ارسال</button>
-                      <button class="btn btn-secondary">لغو</button>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
 
         </div>
 
-     </div>
+    </div>
 {% endblock %}

@@ -17,7 +17,7 @@ class PatientGender(models.Model):
 
 
 class Patient(models.Model):
-    code = models.SmallIntegerField(primary_key=True, unique=True,null=False, verbose_name='کد ملی')
+    code = models.CharField(max_length=10,primary_key=True, unique=True,null=False, verbose_name='کد ملی')
     firstname = models.CharField(max_length=100, verbose_name='نام')
     lastname = models.CharField(max_length=100, verbose_name='نام خانوادگی')
     phonenumber = models.IntegerField( verbose_name='شماره تلفن')
