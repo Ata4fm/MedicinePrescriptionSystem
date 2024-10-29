@@ -1,0 +1,61 @@
+
+<!doctype html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block page-title %}{% endblock %}</title>
+
+    {% block header_references %}
+        {% include 'header_refrences.html' %}
+     {% endblock %}
+</head>
+<body>
+
+<div class="page-wrapper compact-wrapper" id="pageWrapper">
+
+    {% include 'navbar.html' %}
+
+    <div class="page-body">
+      
+        <div class="container-fluid">
+          <div class="page-title">
+            <div class="row">
+              <div class="col-12 col-sm-6">
+                <h3>{% block body-title %}{% endblock %}</h3>
+              </div>
+              <div class="col-12 col-sm-6">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="index-zeta.html" data-bs-original-title="" title=""> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
+                  <li class="breadcrumb-item">{% block body-link-title  %}{% endblock %}</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+            <div class="container-fluid general-widget">
+          <div class="row">
+              {% block content %}
+              	
+              {% endblock %}
+            
+          </div>
+        </div>
+        </div>
+        
+
+      </div>
+</div>
+    
+    
+  </div>
+
+
+
+
+
+
+
+{% block footer_references %} 
+    {% include 'footer_references.html' %}
+{% endblock %}
+</body>
+</html>

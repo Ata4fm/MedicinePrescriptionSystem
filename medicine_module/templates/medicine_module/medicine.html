@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block page-title %}صفحه مدیریت دارو{% endblock %}
+
+{% block body-title %}صفحه مدیریت دارو{% endblock %}
+
+{% block body-link-title %}مدیریت دارو{% endblock %}
+
+
+{% block content %}
+
+
+    <div class="col-sm-12">
+              <div class="card">
+                <div class="card-header">
+                  <h5>مشخصات دارو ها</h5>
+                    <span>از این قسمت دکتر عزیز، میتوانید تمامی دارو های موجود را مشاهده نمایید.</span>
+                </div>
+                <div class="card-block row">
+                  <div class="col-sm-12 col-lg-12 col-xl-12">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead class="table-primary">
+                          <tr>
+                            <th scope="col">شناسه دارو</th>
+                            <th scope="col">نام دارو</th>
+                            <th scope="col">دسته بندی</th>
+                            <th scope="col">مصرف</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for item in medicines%}
+                              <tr>
+                            <th scope="row">{{ item.id }}</th>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.category }}</td>
+                            <td>{{ item.short_desc }}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+{% endblock %}
