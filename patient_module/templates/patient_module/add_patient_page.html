@@ -73,10 +73,15 @@
                                         <div class="col-sm-3 col-form-label">
                                             {{ patient_form.information.label_tag }}
                                         </div>
-                                        <div class="col-sm-4 {% if patient_form.information.errors %} text-danger form-control-danger {% endif %}">
+                                        <div class="col-sm-6 ">
                                             {{ patient_form.information }}
+
+                                            <div class="{% if patient_form.information.errors %} text-danger form-control-danger {% endif %}">
                                             {{ patient_form.information.errors }}
+                                            </div>
+
                                         </div>
+
                                     </div>
 
                                     <div class="mb-3 row">
@@ -91,7 +96,7 @@
 
                                     <div class="mb-3 row">
                                         <div class="col-sm-3 col-form-label">
-                                            {{ patient_form.gender.label_tag }}
+                                            {{ patient_form.gender.label }}
                                         </div>
                                         <div class="col-sm-2 {% if patient_form.gender.errors %} text-danger form-control-danger {% endif %}">
                                             {{ patient_form.gender }}
