@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic.base import TemplateView
 
 
-def index(request):
-    return render(request, 'home/index.html')
+class HomeView(TemplateView):
+    template_name = 'home/index.html'
+
+
 def prescribing_medication(request):
     return render(request,'prescribing_medication.html')
 def patient_info(request):

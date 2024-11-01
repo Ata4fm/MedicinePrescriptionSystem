@@ -33,15 +33,3 @@ class PatientAddView(View):
             return redirect('patients')
         return render(request, 'patient_module/add_patient_page.html', {'patient_form': patient_form})
 
-
-# def patient_add_view(request):
-#     if request.method == 'POST':
-#         patient_form = AddPatientModelForm(request.POST,)
-#         if patient_form.is_valid():
-#             return redirect('home')
-#     else:
-#         patient_form = AddPatientModelForm()
-#     context = {
-#         'patient_form': patient_form
-#     }
-#     return render(request, 'patient_module/add_patient_page.html',context)
