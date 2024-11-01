@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from . import models
 from .models import Patient
 from .forms import  AddPatientModelForm
+from django.views import View
 
 
 # Create your views here.
@@ -16,14 +17,31 @@ def patient_view_detail(request, patient_code):
     context = {'patient': patient}
     return render(request,'patient_module/patient_details.html',context)
 
-def patient_add_view(request):
-    if request.method == 'POST':
+
+class PatientAddView(View):
+    def get(self, request):
+        patient_form = AddPatientModelForm()
+        context = {
+            'patient_form': patient_form
+        }
+        return render(request, 'patient_module/add_patient_page.html', context)
+
+    def post(self, request):
         patient_form = AddPatientModelForm(request.POST,)
         if patient_form.is_valid():
-            return redirect('home')
-    else:
-        patient_form = AddPatientModelForm()
-    context = {
-        'patient_form': patient_form
-    }
-    return render(request, 'patient_module/add_patient_page.html',context)
+            patient_form.save()
+            return redirect('patients')
+        return render(request, 'patient_module/add_patient_page.html', {'patient_form': patient_form})
+
+
+# def patient_add_view(request):
+#     if request.method == 'POST':
+#         patient_form = AddPatientModelForm(request.POST,)
+#         if patient_form.is_valid():
+#             return redirect('home')
+#     else:
+#         patient_form = AddPatientModelForm()
+#     context = {
+#         'patient_form': patient_form
+#     }
+#     return render(request, 'patient_module/add_patient_page.html',context)
