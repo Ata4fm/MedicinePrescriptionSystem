@@ -129,10 +129,7 @@ class AddPatientModelForm(forms.ModelForm):
                     'placeholder': 'سن'
                 }
             ),
-            # 'information': forms.ModelMultipleChoiceField(
-            #     queryset=models.PatientHealthyInformation.objects.all(),
-            #     widget=forms.CheckboxSelectMultiple()
-            # ),
+
             'address': forms.TextInput(
                 attrs={
                     'class': 'form-control',
@@ -140,11 +137,6 @@ class AddPatientModelForm(forms.ModelForm):
                 }
             ),
 
-            'gender': forms.ModelChoiceField(
-                queryset=models.PatientGender.objects.all(),
-                widget=forms.Select(attrs={
-                    'class': 'form-select',
-                })
-            )
+            'information': forms.CheckboxSelectMultiple()
 
         }
