@@ -140,3 +140,36 @@ class AddPatientModelForm(forms.ModelForm):
             'information': forms.CheckboxSelectMultiple()
 
         }
+
+        error_messages = {
+            'code': {
+                'required': 'لطفا کد ملی را وارد نمایید',
+                'max_length': 'لطفا بیشتر از تعداد 10 وارد نکنید'
+            },
+            'firstname': {
+                'required': 'لطفا نام را وارد نمایید',
+                'max_length': 'لطفا بیشتر از تعداد 100 وارد نکنید'
+            },
+            'lastname': {
+                'required': 'لطفا نام خانوادگی را وارد نمایید',
+                'max_length': 'لطفا بیشتر از تعداد 100 وارد نکنید'
+            },
+            'phonenumber': {
+                'required': 'لطفا شماره تماس را وارد نمایید',
+                'max_length': 'لطفا بیشتر از تعداد 11 وارد نکنید'
+            },
+            'age': {
+                'required': 'لطفا سن را وارد نمایید',
+                'max_length': 'لطفا بیشتر از تعداد 10 وارد نکنید'
+            },
+            'address': {
+                'required': 'لطفا آدرس محل زندگی را وارد نمایید',
+                'max_length': 'لطفا بیشتر از تعداد 100 وارد نکنید'
+            },
+            'information': {
+                'required': 'لطفا یکی از گزینه را انتخاب نمایید',
+            },
+            'gender': {
+                'required': 'لطفا جنسیت بیمار را را وارد نمایید',
+            },
+        }
