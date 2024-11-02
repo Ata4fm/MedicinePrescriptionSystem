@@ -17,7 +17,8 @@
     <div class="row">
         <div class="card-body">
             <div class="btn-showcase">
-                <a href="{% url 'add_patient' %}" class="btn btn-outline-primary-2x" type="button" data-bs-original-title="" title="" data-original-title="btn btn-success-gradien">
+                <a href="{% url 'add_patient' %}" class="btn btn-outline-primary-2x" type="button"
+                   data-bs-original-title="" title="" data-original-title="btn btn-success-gradien">
                     افزودن بیمار
                 </a>
 
@@ -34,52 +35,34 @@
                                 <label>جستجو : <input type="search" class="" placeholder="" aria-controls="advance-2">
                                 </label>
                             </div>
-                            <table class="display dataTable" id="advance-2" role="grid"
-                                   aria-describedby="advance-2_info">
-                                <thead>
-
-                                <tr role="row">
-
-                                    <th class="sorting_asc" tabindex="0" aria-controls="advance-2" rowspan="1" colspan="1"
-                                        style="width: 208.422px;">
-                                        نام
-                                    </th>
-
-                                    <th class="sorting" tabindex="0" aria-controls="advance-2" rowspan="1" colspan="1"
-                                        style="width: 340.844px;">کد ملی
-                                    </th>
-
-                                    <th class="sorting" tabindex="0" aria-controls="advance-2" rowspan="1" colspan="1"
-                                        style="width: 109.062px;">سن
-                                    </th>
-
-                                    <th class="sorting" tabindex="0" aria-controls="advance-2" rowspan="1" colspan="1"
-                                        style="width: 215.75px;">شماره تلفن
-                                    </th>
-
-                                    <th class="sorting" tabindex="0" aria-controls="advance-2" rowspan="1" colspan="1"
-                                         style="width: 259.828px;">
-                                        تنظیمات
-                                    </th>
+                            <table class="table">
+                                <thead class="table-primary">
+                                <tr>
+                                    <th scope="col">نام</th>
+                                    <th scope="col">کد ملی</th>
+                                    <th scope="col">سن</th>
+                                    <th scope="col">شماره تلفن</th>
+                                    <th scope="col">تنظیمات</th>
                                 </tr>
+                                </thead>
 
                                 </thead>
                                 <tbody>
                                 {% for patient in patients %}
-                                <tr role="row" class="odd">
+                                    <tr role="row" class="odd">
 
-                                        <td class="sorting_1">{{ patient.firstname}} {{ patient.lastname }}</td>
-                                        <td>{{ patient.code}}</td>
+                                        <td class="sorting_1">{{ patient.firstname }} {{ patient.lastname }}</td>
+                                        <td>{{ patient.code }}</td>
                                         <td>{{ patient.age }}</td>
                                         <td>{{ patient.phonenumber }}</td>
                                         <td>
-                                        <a href="{% url 'patient_information' patient_code=patient.code %}">
-                                            جزییات
-                                        </a>
+                                            <a href="{% url 'patient_information' patient_code=patient.code %}">
+                                                جزییات
+                                            </a>
                                         </td>
 
 
-                                </tr>
+                                    </tr>
                                 {% endfor %}
                                 </tbody>
 
