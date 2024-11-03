@@ -1,4 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import TemplateView
+
 from . import models
 from .models import Patient
 from .forms import  AddPatientModelForm
@@ -7,16 +9,24 @@ from django.views import View
 
 # Create your views here.
 
-def patient_view(request):
-    patients = models.Patient.objects.all()
-    context = {'patients': patients}
-    return render(request, 'patient_module/patient.html',context)
+class PatientView(TemplateView):
+    template_name = 'patient_module/patient.html'
 
-def patient_view_detail(request, patient_code):
-    patient = get_object_or_404(Patient,pk=patient_code)
-    context = {'patient': patient}
-    return render(request,'patient_module/patient_details.html',context)
+    def get_context_data(self, **kwargs):
+        patients = models.Patient.objects.all()
+        context = super(PatientView,self).get_context_data()
+        context['patients'] = patients
+        return context
 
+class PatientDetailView(TemplateView):
+    template_name = 'patient_module/patient_details.html'
+
+    def get_context_data(self, **kwargs,):
+        context = super(PatientDetailView, self).get_context_data()
+        patient_code = kwargs['patient_code']
+        patient = get_object_or_404(Patient, pk=patient_code)
+        context['patient'] = patient
+        return context
 
 class PatientAddView(View):
     def get(self, request):
