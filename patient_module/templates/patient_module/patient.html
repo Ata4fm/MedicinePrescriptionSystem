@@ -56,7 +56,7 @@
                                         <td>{{ patient.age }}</td>
                                         <td>{{ patient.phonenumber }}</td>
                                         <td>
-                                            <a href="{% url 'patient_information' patient_code=patient.code %}">
+                                            <a href="{% url 'patient_information' pk=patient.code %}">
                                                 جزییات
                                             </a>
                                         </td>

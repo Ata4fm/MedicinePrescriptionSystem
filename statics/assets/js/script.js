@@ -1,5 +1,36 @@
 (function ($) {
   "use strict";
+  function toggleTheme() {
+    // Check current theme
+    const currentTheme = sessionStorage.getItem('theme');
+
+    if (currentTheme === 'dark') {
+        // Switch to light mode
+        sessionStorage.setItem('theme', 'light');
+    } else {
+        // Switch to dark mode
+        sessionStorage.setItem('theme', 'dark');
+    }
+  }
+  // Function to load theme on page load
+function loadTheme() {
+    const savedTheme = sessionStorage.getItem('theme');
+    $(".mode").toggleClass("dark");
+    $("body").toggleClass("dark-only");
+
+
+    if (savedTheme == "dark") {
+        document.querySelector('.mode').classList.add("dark")
+        document.querySelector('body').classList.add("dark-only")
+    } else {
+          document.querySelector('.mode').classList.remove("dark")
+          document.querySelector('body').classList.remove("dark-only")
+    }
+  }
+
+
+// Load the saved theme when the page loads
+  window.addEventListener('DOMContentLoaded', loadTheme);
   $(document).on("click", function (e) {
     var outside_space = $(".outside");
     if (
@@ -123,6 +154,7 @@
   $(".mode").on("click", function () {
     $(".mode").toggleClass("dark");
     $("body").toggleClass("dark-only");
+    toggleTheme()
     var color = $(this).attr("data-attr");
     localStorage.setItem("body", "dark-only");
   });

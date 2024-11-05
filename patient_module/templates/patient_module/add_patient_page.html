@@ -20,64 +20,64 @@
 
                                     <div class="mb-3 row ">
                                         <div class="col-sm-3 col-form-label ">
-                                            {{ patient_form.code.label_tag }}
+                                            {{ form.code.label_tag }}
                                         </div>
-                                        <div class="col-sm-4 {% if patient_form.code.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ patient_form.code }}
-                                            {{ patient_form.code.errors }}
+                                        <div class="col-sm-4 {% if form.code.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.code }}
+                                            {{ form.code.errors }}
                                         </div>
                                     </div>
 
 
                                     <div class="mb-3 row">
                                         <div class="col-sm-3 col-form-label">
-                                            {{ patient_form.firstname.label_tag }}
+                                            {{ form.firstname.label_tag }}
                                         </div>
-                                        <div class="col-sm-4 {% if patient_form.firstname.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ patient_form.firstname }}
-                                            {{ patient_form.firstname.errors }}
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3 row">
-                                        <div class="col-sm-3 col-form-label">
-                                            {{ patient_form.lastname.label_tag }}
-                                        </div>
-                                        <div class="col-sm-4 {% if patient_form.lastname.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ patient_form.lastname }}
-                                            {{ patient_form.lastname.errors }}
+                                        <div class="col-sm-4 {% if form.firstname.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.firstname }}
+                                            {{ form.firstname.errors }}
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row">
                                         <div class="col-sm-3 col-form-label">
-                                            {{ patient_form.phonenumber.label_tag }}
+                                            {{ form.lastname.label_tag }}
                                         </div>
-                                        <div class="col-sm-4 {% if patient_form.phonenumber.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ patient_form.phonenumber }}
-                                            {{ patient_form.phonenumber.errors }}
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3 row">
-                                        <div class="col-sm-3 col-form-label">
-                                            {{ patient_form.age.label_tag }}
-                                        </div>
-                                        <div class="col-sm-4 {% if patient_form.age.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ patient_form.age }}
-                                            {{ patient_form.age.errors }}
+                                        <div class="col-sm-4 {% if form.lastname.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.lastname }}
+                                            {{ form.lastname.errors }}
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row">
                                         <div class="col-sm-3 col-form-label">
-                                            {{ patient_form.information.label_tag }}
+                                            {{ form.phonenumber.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if form.phonenumber.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.phonenumber }}
+                                            {{ form.phonenumber.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-form-label">
+                                            {{ form.age.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if form.age.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.age }}
+                                            {{ form.age.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-form-label">
+                                            {{ form.information.label_tag }}
                                         </div>
                                         <div class="col-sm-6 ">
-                                            {{ patient_form.information }}
+                                            {{ form.information }}
 
-                                            <div class="{% if patient_form.information.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ patient_form.information.errors }}
+                                            <div class="{% if form.information.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.information.errors }}
                                             </div>
 
                                         </div>
@@ -86,21 +86,21 @@
 
                                     <div class="mb-3 row">
                                         <div class="col-sm-3 col-form-label">
-                                            {{ patient_form.address.label_tag }}
+                                            {{ form.address.label_tag }}
                                         </div>
-                                        <div class="col-sm-4 {% if patient_form.address.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ patient_form.address }}
-                                            {{ patient_form.address.errors }}
+                                        <div class="col-sm-4 {% if form.address.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.address }}
+                                            {{ form.address.errors }}
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row">
                                         <div class="col-sm-3 col-form-label">
-                                            {{ patient_form.gender.label }}
+                                            {{ form.gender.label }}
                                         </div>
-                                        <div class="col-sm-2 {% if patient_form.gender.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ patient_form.gender }}
-                                            {{ patient_form.gender.errors }}
+                                        <div class="col-sm-2 {% if form.gender.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.gender }}
+                                            {{ form.gender.errors }}
                                         </div>
                                     </div>
 

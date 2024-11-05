@@ -9,11 +9,21 @@ class PatientHealthyInformation(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'سوابق سلامتی بیمار'
+        verbose_name_plural = 'سوابق سلامتی بیماران'
+
 class PatientGender(models.Model):
     title = models.CharField(max_length=100,verbose_name='جنسیت')
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'جنسیت بیمار'
+        verbose_name_plural = 'جنسیت بیماران'
+
+
 
 
 class Patient(models.Model):
@@ -25,6 +35,7 @@ class Patient(models.Model):
     address = models.CharField(max_length=100, verbose_name='آدرس')
     information = models.ManyToManyField(PatientHealthyInformation,null=True,blank=True,verbose_name='اطلاعات سوابق بیماری')
     gender = models.ForeignKey(PatientGender, on_delete=models.CASCADE, null=True, blank=True,verbose_name='جنسیت')
+    file = models.FileField(upload_to='patients/',verbose_name='آپلود فایل',null=True, blank=True)
 
     def __str__(self):
         return f'{self.firstname} - {self.lastname} - {self.phonenumber}'
