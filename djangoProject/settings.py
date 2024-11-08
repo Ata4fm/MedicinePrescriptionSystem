@@ -41,10 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-
+    'account_module.apps.AccountModuleConfig',
     'home.apps.HomeConfig',
     'medicine_module.apps.MedicineModuleConfig',
     'patient_module.apps.PatientModuleConfig'
+
 ]
 
 MIDDLEWARE = [
