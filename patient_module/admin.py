@@ -4,7 +4,7 @@ from . import models
 # Register your models here.
 
 class PatientAdmin(admin.ModelAdmin):
-    list_display = ['code','firstname','age','lastname','phonenumber']
+    list_display = ['code','age','phonenumber']
 
 class PatientInfoAdmin(admin.ModelAdmin):
     list_display = ['title']

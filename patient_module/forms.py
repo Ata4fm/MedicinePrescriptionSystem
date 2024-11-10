@@ -6,7 +6,7 @@ from .models import Patient
 class AddPatientModelForm(forms.ModelForm):
     class Meta:
         model = Patient
-        fields = ['code', 'firstname', 'lastname', 'phonenumber', 'age', 'address', 'information', 'gender']
+        fields = ['code','username','first_name','last_name','password', 'phonenumber', 'age', 'address', 'information', 'gender']
 
         widgets = {
             'code': forms.TextInput(
@@ -15,13 +15,25 @@ class AddPatientModelForm(forms.ModelForm):
                 'placeholder':'کد ملی'
                 }
             ),
-            'firstname': forms.TextInput(
+            'username': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'نام کاربری'
+                }
+            ),
+            'password': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'گذرواژه'
+                }
+            ),
+            'first_name': forms.TextInput(
                 attrs={
                     'class': 'form-control',
                     'placeholder':'نام'
                 }
             ),
-            'lastname': forms.TextInput(
+            'last_name': forms.TextInput(
                 attrs={
                     'class': 'form-control',
                     'placeholder': 'نام خانوادگی'
@@ -57,13 +69,21 @@ class AddPatientModelForm(forms.ModelForm):
                 'required': 'لطفا کد ملی را وارد نمایید',
                 'max_length': 'لطفا بیشتر از تعداد 10 وارد نکنید'
             },
-            'firstname': {
+            'username': {
+                'required': 'لطفا نام کاربری را وارد نمایید',
+                'max_length': 'لطفا بیشتر از تعداد 100 وارد نکنید'
+            },
+            'first_name': {
                 'required': 'لطفا نام را وارد نمایید',
                 'max_length': 'لطفا بیشتر از تعداد 100 وارد نکنید'
             },
-            'lastname': {
+            'last_name': {
                 'required': 'لطفا نام خانوادگی را وارد نمایید',
                 'max_length': 'لطفا بیشتر از تعداد 100 وارد نکنید'
+            },
+            'password': {
+                'required': 'لطفا گذرواژه را وارد نمایید',
+                'max_length': 'لطفا بیشتر از تعداد 50 وارد نکنید'
             },
             'phonenumber': {
                 'required': 'لطفا شماره تماس را وارد نمایید',

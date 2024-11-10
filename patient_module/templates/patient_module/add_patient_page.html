@@ -9,7 +9,9 @@
             <div class="col-sm-12 col-xl-12">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="card">
+
+
+                    <div class="card">
                             <div class="card-header pb-0">
                                 <h5>فرم ثبت نام بیمار</h5><span>لطفا اطلاعات بیمار را در داخل فرم وارد کرده و دکمه ثبت را وارد کنید.</span>
                             </div>
@@ -17,9 +19,21 @@
                                 <form class="theme-form" action="{% url 'add_patient' %}" method="post" >
                                     {% csrf_token %}
 
+                                    <div class="mb-3 row ">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label ">
+                                            {{ form.username.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if form.username.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.username }}
+                                            {{ form.username.errors }}
+                                        </div>
+                                    </div>
+
+
+
 
                                     <div class="mb-3 row ">
-                                        <div class="col-sm-3 col-form-label ">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label ">
                                             {{ form.code.label_tag }}
                                         </div>
                                         <div class="col-sm-4 {% if form.code.errors %} text-danger form-control-danger {% endif %}">
@@ -30,27 +44,27 @@
 
 
                                     <div class="mb-3 row">
-                                        <div class="col-sm-3 col-form-label">
-                                            {{ form.firstname.label_tag }}
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label">
+                                            {{ form.first_name.label_tag }}
                                         </div>
-                                        <div class="col-sm-4 {% if form.firstname.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ form.firstname }}
-                                            {{ form.firstname.errors }}
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3 row">
-                                        <div class="col-sm-3 col-form-label">
-                                            {{ form.lastname.label_tag }}
-                                        </div>
-                                        <div class="col-sm-4 {% if form.lastname.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ form.lastname }}
-                                            {{ form.lastname.errors }}
+                                        <div class="col-sm-4 {% if form.first_name.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.first_name }}
+                                            {{ form.first_name.errors }}
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <div class="col-sm-3 col-form-label">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label">
+                                            {{ form.last_name.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if form.last_name.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.last_name }}
+                                            {{ form.last_name.errors }}
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3 row">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label">
                                             {{ form.phonenumber.label_tag }}
                                         </div>
                                         <div class="col-sm-4 {% if form.phonenumber.errors %} text-danger form-control-danger {% endif %}">
@@ -60,7 +74,7 @@
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <div class="col-sm-3 col-form-label">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label">
                                             {{ form.age.label_tag }}
                                         </div>
                                         <div class="col-sm-4 {% if form.age.errors %} text-danger form-control-danger {% endif %}">
@@ -70,10 +84,10 @@
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <div class="col-sm-3 col-form-label">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label">
                                             {{ form.information.label_tag }}
                                         </div>
-                                        <div class="col-sm-6 ">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 ">
                                             {{ form.information }}
 
                                             <div class="{% if form.information.errors %} text-danger form-control-danger {% endif %}">
@@ -85,7 +99,7 @@
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <div class="col-sm-3 col-form-label">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label">
                                             {{ form.address.label_tag }}
                                         </div>
                                         <div class="col-sm-4 {% if form.address.errors %} text-danger form-control-danger {% endif %}">
@@ -95,12 +109,22 @@
                                     </div>
 
                                     <div class="mb-3 row">
-                                        <div class="col-sm-3 col-form-label">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label">
                                             {{ form.gender.label }}
                                         </div>
                                         <div class="col-sm-2 {% if form.gender.errors %} text-danger form-control-danger {% endif %}">
                                             {{ form.gender }}
                                             {{ form.gender.errors }}
+                                        </div>
+                                    </div>
+
+                                <div class="mb-3 row ">
+                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label ">
+                                            {{ form.password.label_tag }}
+                                        </div>
+                                        <div class="col-sm-4 {% if form.password.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.password }}
+                                            {{ form.password.errors }}
                                         </div>
                                     </div>
 

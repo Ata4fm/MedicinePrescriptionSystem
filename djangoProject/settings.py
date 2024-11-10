@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import AUTH_USER_MODEL
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,10 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'account_module.apps.AccountModuleConfig',
     'home.apps.HomeConfig',
-    'medicine_module.apps.MedicineModuleConfig',
-    'patient_module.apps.PatientModuleConfig'
+    'patient_module',
+    'account_module',
+    'medicine_module',
 
 ]
 
@@ -79,6 +81,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'djangoProject.wsgi.application'
 
+AUTH_USER_MODEL = 'patient_module.Patient'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
