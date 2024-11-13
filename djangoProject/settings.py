@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
     'home.apps.HomeConfig',
     'patient_module',
-    'account_module',
+    'account_module.apps.AccountModuleConfig',
     'medicine_module',
 
 ]

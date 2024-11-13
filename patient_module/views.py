@@ -1,5 +1,4 @@
-from django.shortcuts import render, redirect
-from django.views.generic import View,ListView,DetailView
+from django.views.generic import ListView,DetailView
 from django.views.generic.edit import FormView
 from .models import Patient
 from .forms import  AddPatientModelForm

@@ -7,7 +7,7 @@
                 <div class="login-card">
                     <form class="theme-form login-form" action="{% url 'login-page' %}" method="post">
                         {% csrf_token %}
-                        <h4>ورود</h4>
+                        <h6>ورود</h6>
                         <h6>خوش آمدید! به حساب کاربری خود وارد شوید.</h6>
                         <div class="form-group">
                             <label class="font-primary">{{ form.code.label_tag }}</label>
