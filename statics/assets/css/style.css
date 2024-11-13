@@ -2703,9 +2703,10 @@ h6,
 }
 
 p {
+    display:  inline-block;
+    margin: 0px;
     font-size: 13px;
-    line-height: 1.7;
-}
+    }
 
 code {
     color: var(--theme-deafult) !important;
@@ -52218,5 +52219,14 @@ html[dir="rtl"] .ecommerce-dashboard-section .support-sec.profile-greeting .supp
         display: none !important
     }
 }
+i {
+  stroke-width:1.8px !Important;
+}
+svg * {
+  stroke-width:1.8px !Important;
+}
+.page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper .sidebar-main .sidebar-links .simplebar-wrapper .simplebar-mask .simplebar-content-wrapper .simplebar-content>li a svg *{
+  stroke-width:1.8px !Important;
 
+}
 /*# sourceMappingURL=style.css.map */

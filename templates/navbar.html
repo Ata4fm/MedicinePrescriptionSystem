@@ -1,9 +1,10 @@
 {% load static %}
 
 {% block nav %}
-    <div class="page-header">
+
+    <div class="page-header close_icon">
         <div class="header-wrapper row m-0">
-            <div class="header-logo-wrapper col-md-6 p-0">
+            <div class="header-logo-wrapper col-auto p-0">
                 <div class="logo-wrapper">
                     <a href="index-zeta.html">
                         <img class="img-fluid" src="{% static "assets/images/logo/logo.png" %}"
@@ -35,8 +36,11 @@
                     </div>
                 </div>
             </div>
+            <div class="left-side-header col ps-0 d-none d-md-block">
+                
+            </div>
 
-            <div class="nav-right col-md-6 pull-right right-header p-0">
+            <div class="nav-right col-10 col-sm-6 pull-right right-header p-0">
                 <ul class="nav-menus ">
                     <li>
                         <div class="d-flex justify-content-center align-items-center full-height">
@@ -103,34 +107,14 @@
                         <ul class="profile-dropdown onhover-show-div">
                             <li><a href="user-profile.html"><i data-feather="user"></i><span>حساب کاربری </span></a>
                             </li>
-                            {% if request.user.is_authenticated  %}
-                            	<li><a href="login.html"><i data-feather="log-in"> </i><span>خروج</span></a></li>
-                            {% endif %} 
-                            
+                            {% if request.user.is_authenticated %}
+                                <li><a href="login.html"><i data-feather="log-in"> </i><span>خروج</span></a></li>
+                            {% endif %}
+
                         </ul>
                     </li>
                 </ul>
             </div>
-            <script class="result-template" type="text/x-handlebars-template">
-                <div class="ProfileCard u-cf">
-                    <div class="ProfileCard-avatar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                             class="feather feather-airplay m-0">
-                            <path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path>
-                            <polygon points="12 15 17 21 7 21 12 15"></polygon>
-                        </svg>
-                    </div>
-                    <div class="ProfileCard-details">
-                        <div class="ProfileCard-realName">{{ name }}</div>
-                    </div>
-                </div>
-            </script>
-            <script class="empty-template" type="text/x-handlebars-template">
-                <div class="EmptyMessage">جستجوی شما 0 نتیجه یافت. این به احتمال زیاد به این معنی است که بک اند پایین
-                    است!
-                </div>
-            </script>
         </div>
     </div>
 
@@ -163,22 +147,16 @@
 
 
                             <li class="sidebar-list">
+
                                 <a class="sidebar-link sidebar-title link-nav" href="{% url 'home' %}">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <g>
-                                            <g>
-                                                <path d="M7.30566 14.5743H16.8987" stroke="#130F26" stroke-width="1.5"
-                                                      stroke-linecap="round"
-                                                      stroke-linejoin="round"></path>
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                      d="M2.5 7.79836C2.5 5.35646 3.75 3.25932 6.122 2.77265C8.493 2.28503 10.295 2.4536 11.792 3.26122C13.29 4.06884 12.861 5.26122 14.4 6.13646C15.94 7.01265 18.417 5.69646 20.035 7.44217C21.729 9.26979 21.72 12.0755 21.72 13.8641C21.72 20.6603 17.913 21.1993 12.11 21.1993C6.307 21.1993 2.5 20.7288 2.5 13.8641V7.79836Z"
-                                                      stroke="#130F26" stroke-width="1.5" stroke-linecap="round"
-                                                      stroke-linejoin="round"></path>
-                                            </g>
-                                        </g>
+                                    {#                                    <i class="bi bi-house-door " style="font-size: 20pt;"></i>#}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-house-door" viewBox="0 0 16 16">
+                                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
                                     </svg>
-                                    <span>خانه</span></a></li>
+                                    <span>خانه</span>
+                                </a>
+                            </li>
 
                             <li class="sidebar-list">
                                 <a class="sidebar-link sidebar-title link-nav" href="{% url 'medicines' %}">
