@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content_layout %}
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12">
+                <div class="login-card">
+                    <form class="theme-form login-form" action="{% url 'check_otp' %}" method="post">
+                        {% csrf_token %}
+                        <h6>ورود</h6>
+                        <h6>لطفا کد تایید پیامک را وارد نمایید</h6>
+                        <div class="form-group">
+                            <label class="font-primary">{{ form.otp.label_tag }}</label>
+                            <div class="input-group"><span class="input-group-text"><svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-circle" viewBox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                            </svg>
+                            </span>
+                                {{ form.otp }}
+                            </div>
+                            <div class="mt-3 {% if form.otp.errors %} text-danger form-control-danger {% endif %}">
+                                            {{ form.otp.errors }}
+                                        </div>
+                            </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block" type="submit">تایید</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
