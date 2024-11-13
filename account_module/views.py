@@ -62,11 +62,12 @@ class CheckOTPView(View):
             user: User = Patient.objects.filter(phonenumber__iexact=phone_number).first()
             if OTP.objects.filter(code= user_code, phone=phone_number).exists():
                 login(request, user)
+                OTP.objects.filter(code= user_code, phone=phone_number).delete()
                 return redirect(reverse('home'))
             else:
-                otp_form.add_error('otp','کد موجود نیست')
+                otp_form.add_error('otp','کد وارد شده اشتباه میباشد')
         else:
-            otp_form.add_error("otp","کد تایید اشتباه میباشد")
+            otp_form.add_error("otp","فرم معتبر نیست")
         context = {
             'form': otp_form
         }

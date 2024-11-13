@@ -5,7 +5,14 @@
 {% block page-title %} صفحه اصلی {% endblock %}
 
 
-{% block body-title %}پنل مدیریتی دکتر{% endblock %}
+{% block body-title %}
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_superuser %}
+            <h2>پنل مدیریتی دکتر</h2>
+        {% endif %}
+        <h2>پنل مدیریتی بیمار</h2>
+    {% endif %}
+{% endblock %}
 {% block body-link-title %}داشبورد{% endblock %}
 
 {% block content %}
