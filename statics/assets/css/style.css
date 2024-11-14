@@ -30542,7 +30542,8 @@ ul.pro-services li:nth-child(n+2) {
     justify-content: center;
     min-height: 100vh;
     margin: 0 auto;
-    padding: 30px 12px
+    padding: 30px 12px;
+
 }
 
 .login-form {
@@ -30553,7 +30554,8 @@ ul.pro-services li:nth-child(n+2) {
     -ms-flex-pack: center;
     justify-content: center;
     margin-left: auto;
-    margin-right: auto
+    margin-right: auto;
+    border-radius: 40px;
 }
 
 .login-form h4 {

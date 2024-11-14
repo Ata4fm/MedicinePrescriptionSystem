@@ -3,9 +3,9 @@
 {% block content_layout %}
     <div class="container-fluid p-0">
         <div class="row">
-            <div class="col-12">
+            <div class="col-12 ">
                 <div class="login-card">
-                    <form class="theme-form login-form" action="{% url 'login-page' %}" method="post">
+                    <form class="theme-form login-form shadow-lg p-3 mb-5 bg-white rounded-5" action="{% url 'login-page' %}" method="post">
                         {% csrf_token %}
                         <h6>ورود</h6>
                         <h6>خوش آمدید! به حساب کاربری خود وارد شوید.</h6>
