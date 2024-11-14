@@ -11507,7 +11507,8 @@ table.dataTable.display tbody tr.odd>.sorting_1 {
     background-color: #fff;
     font-size: 14px;
     color: #898989;
-    padding: 12px 10px
+    padding: 12px 10px;
+    font-family: Vazir;
 }
 
 .theme-form input[type="text"]::-webkit-input-placeholder,
