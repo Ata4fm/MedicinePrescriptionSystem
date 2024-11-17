@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-
+from django.views import View
+from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from .forms import MedicineModelForm
 from .models import Medicine
-from django.views import View
-# Create your views here.
 
+@method_decorator(login_required, name='dispatch')
 class MedicineView(TemplateView):
     template_name = 'medicine_module/medicine.html'
 
@@ -15,7 +16,7 @@ class MedicineView(TemplateView):
         context['medicines'] = medicine
         return context
 
-
+@method_decorator(login_required, name='dispatch')
 class AddMedicine(View):
     def get(self,request):
         medicine_form = MedicineModelForm()

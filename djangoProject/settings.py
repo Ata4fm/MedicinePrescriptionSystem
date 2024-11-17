@@ -82,6 +82,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'djangoProject.wsgi.application'
 
 AUTH_USER_MODEL = 'patient_module.Patient'
+LOGIN_URL = '/'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

@@ -105,11 +105,19 @@
                             </svg>
                         </div>
                         <ul class="profile-dropdown onhover-show-div">
-                            <li><a href="user-profile.html"><i data-feather="user"></i><span>حساب کاربری </span></a>
+                            <li>
+                                <a href="user-profile.html"><i data-feather="user"></i><span>حساب کاربری </span>
+                                </a>
                             </li>
-                            {% if request.user.is_authenticated %}
-                                <li><a href="login.html"><i data-feather="log-in"> </i><span>خروج</span></a></li>
-                            {% endif %}
+                            
+                            <li>
+                                <a href="{% url 'logout-page' %}">
+                                    <i data-feather="log-in"> 
+                                    </i>
+                                    <span>خروج</span>
+                                </a>
+                            </li>
+                            
 
                         </ul>
                     </li>
