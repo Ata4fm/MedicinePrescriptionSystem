@@ -42,10 +42,17 @@
 
             <div class="nav-right col-10 col-sm-6 pull-right right-header p-0">
                 <ul class="nav-menus ">
+
+                <li>
+                        <div class="d-flex justify-content-center align-items-center full-height">
+                            <p >{{ datetime }}</p>
+                        </div>
+                    </li>
                     <li>
                         <div class="d-flex justify-content-center align-items-center full-height">
                             {% if request.user.is_authenticated %}
-                                <p class="">{{ request.user.first_name }} {{ request.user.last_name }}</p>
+                                <p class="">{{ request.user.first_name }}
+                                    {{ request.user.last_name }}</p>
                                 <p>{{ request.user.code }}</p>
                             {% endif %}
                         </div>

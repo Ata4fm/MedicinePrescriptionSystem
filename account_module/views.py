@@ -17,6 +17,7 @@ sms = ghasedakpack.Ghasedak('0f5ca0462d55e9ed8c1118b234c3bf78b19a21b7f91b5703d3b
 
 
 class LoginView(View):
+
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('home')
@@ -36,6 +37,7 @@ class LoginView(View):
             user_code = login_form.cleaned_data.get('code')
             otpcode = random.randint(100000,999999)
             user: User = Patient.objects.filter(code__iexact=user_code).first()
+            print(user.phonenumber)
             if user is not None:
                 OTP.objects.create(phone=user.phonenumber, code=otpcode)
                 sms.verification({'receptor': user.phonenumber,

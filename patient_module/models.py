@@ -29,7 +29,7 @@ class PatientGender(models.Model):
 
 class Patient(AbstractUser):
 
-    code = models.CharField(max_length=10, unique=True,null=False, verbose_name='کد ملی')
+    code = models.CharField(db_index=True, primary_key=True,max_length=10, unique=True, verbose_name='کد ملی')
     phonenumber = models.CharField(max_length=11, verbose_name='شماره تلفن',validators=[MaxLengthValidator(11)])
     age = models.CharField(max_length=5,verbose_name='سن', null=True, blank=True)
     address = models.CharField(max_length=100, verbose_name='آدرس',null=True, blank=True)
