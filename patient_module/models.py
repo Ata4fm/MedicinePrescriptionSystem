@@ -24,9 +24,6 @@ class PatientGender(models.Model):
         verbose_name = 'جنسیت بیمار'
         verbose_name_plural = 'جنسیت بیماران'
 
-
-
-
 class Patient(AbstractUser):
 
     code = models.CharField(db_index=True, primary_key=True,max_length=10, unique=True, verbose_name='کد ملی')

@@ -1,58 +1,119 @@
 {% extends 'layout.html' %}
+
 {% load static %}
 
 
 
 {% block page-title %}صفحه مدیریت دارو{% endblock %}
 
-{% block body-title %}صفحه مدیریت دارو{% endblock %}
+{% block body-title %}انبار دارو ها{% endblock %}
 
 {% block body-link-title %}مدیریت دارو{% endblock %}
 
 
 {% block content %}
-<div class="row">
+    <div class="row">
         <div class="card-body">
-            <div class="btn-showcase">
-                <a href="{% url 'add_medicine' %}" class="btn btn-outline-primary-2x" type="button" data-bs-original-title="" title="" data-original-title="btn btn-success-gradien">
+
+            <div class="btn-showcase pb-5">
+                <a href="{% url 'add_medicine' %}" class="btn btn-outline-primary-2x" type="button"
+                   data-bs-original-title="" title="" data-original-title="btn btn-success-gradien">
                     افزودن دارو
                 </a>
 
             </div>
         </div>
 
-    <div class="col-sm-12">
-              <div class="card">
+
+        <div id="app2" class="col-sm-12">
+
+
+            <div class="card">
                 <div class="card-header">
-                  <h5>مشخصات دارو ها</h5>
+                    <h5>مشخصات دارو ها</h5>
                     <span>از این قسمت دکتر عزیز، میتوانید تمامی دارو های موجود را مشاهده نمایید.</span>
-                </div>
-                <div class="card-block row">
-                  <div class="col-sm-12 col-lg-12 col-xl-12">
-                    <div class="table-responsive">
-                      <table class="table">
-                        <thead class="table-primary">
-                          <tr>
-                            <th scope="col">شناسه دارو</th>
-                            <th scope="col">نام دارو</th>
-                            <th scope="col">دسته بندی</th>
-                            <th scope="col">مصرف</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {% for item in medicines%}
-                              <tr>
-                            <th scope="row">{{ item.id }}</th>
-                            <td>{{ item.name }}</td>
-                            <td>{{ item.category }}</td>
-                            <td>{{ item.short_desc }}</td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
-                      </table>
+
+                    <div id="advance-2_filter" class="dataTables_filter">
+                        <label>جستجو : <input type="text" v-model="search" class="form-control">
+                        </label>
                     </div>
-                  </div>
+
+                    <div class="card-body row">
+                        <div class="col-sm-12 col-lg-12 col-xl-12">
+                            <div class="table-responsive">
+                                <div id="advance-2_filter" class="dataTables_filter">
+
+
+                                </div>
+                                <table class="table">
+                                    <thead class="table-primary">
+
+                                    <tr>
+                                        <th scope="col">شناسه دارو</th>
+                                        <th scope="col">نام دارو</th>
+                                        <th scope="col">دسته بندی</th>
+                                        <th scope="col">دستور مصرف</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="box">
+                                    <tr v-for="data in random_lists">
+                                        <td v-text="data.id"></td>
+                                        <td v-text="data.name"></td>
+                                        <td v-text="data.category"></td>
+                                        <td v-text="data.short_desc"></td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@riophae/vue-treeselect@^0.4.0/dist/vue-treeselect.umd.min.js"></script>
+
+    <script>
+    new Vue({
+            el: "#app2",
+            data: {
+                search: "",
+                random_lists: [],
+            },
+            beforeMount() {
+                this.getData();
+            },
+            methods: {
+                getData() {
+                    var self = this;
+                    var url = "/dashboard/medicine/api/medicines/?";
+
+                    if(self.search) {
+                        url += "search=" + self.search;
+                    }
+                    $.get(url)
+                        .done(function (response) {
+                            self.random_lists = response;
+                        })
+                },
+
+            },
+            watch:{
+                "search": function (){
+                    this.getData();
+                }
+            }
+
+        })
+
+    </script>
 {% endblock %}
+

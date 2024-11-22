@@ -1,6 +1,5 @@
 from django.db import models
-from django.utils import timezone
-from datetime import timedelta
+
 
 class OTP(models.Model):
     phone = models.CharField(max_length=11,verbose_name="شماره تماس")

@@ -1,20 +1,40 @@
+
 from django.shortcuts import render, redirect
-from django.views.generic import TemplateView
+from django.views.generic import ListView
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from rest_framework.pagination import PageNumberPagination
+
 from .forms import MedicineModelForm
 from .models import Medicine
 
-@method_decorator(login_required, name='dispatch')
-class MedicineView(TemplateView):
-    template_name = 'medicine_module/medicine.html'
+from rest_framework import viewsets, filters
+from .serializers import MedicineSerializer
+from django_filters.rest_framework import DjangoFilterBackend
 
-    def get_context_data(self, **kwargs):
-        medicine = Medicine.objects.all()
-        context = super(MedicineView, self).get_context_data()
-        context['medicines'] = medicine
-        return context
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 2
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+
+class MedicineViewSet(viewsets.ModelViewSet):
+    serializer_class = MedicineSerializer
+    queryset = Medicine.objects.all()
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = ["category"]
+    search_fields = ["name"]
+    pagination_class = StandardResultsSetPagination
+
+
+
+
+@method_decorator(login_required, name='dispatch')
+class MedicineView(ListView):
+    model = Medicine
+    template_name = 'medicine_module/medicine.html'
+    paginate_by = 2
+
 
 @method_decorator(login_required, name='dispatch')
 class AddMedicine(View):
