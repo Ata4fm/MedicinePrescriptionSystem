@@ -1,10 +1,8 @@
-
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from rest_framework.pagination import PageNumberPagination
 
 from .forms import MedicineModelForm
 from .models import Medicine
@@ -12,11 +10,13 @@ from .models import Medicine
 from rest_framework import viewsets, filters
 from .serializers import MedicineSerializer
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.pagination import PageNumberPagination
 
 class StandardResultsSetPagination(PageNumberPagination):
     page_size = 2
     page_size_query_param = 'page_size'
-    max_page_size = 1000
+    max_page_size = 50
+
 
 class MedicineViewSet(viewsets.ModelViewSet):
     serializer_class = MedicineSerializer

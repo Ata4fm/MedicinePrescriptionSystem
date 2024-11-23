@@ -49989,14 +49989,15 @@ html[dir="rtl"] .page-item:first-child .page-link {
     border-bottom-right-radius: 0.25rem;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    border-left: none
+    font-family: Vazir;
 }
 
 html[dir="rtl"] .page-item:last-child .page-link {
     border-top-left-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;
     border-top-right-radius: 0;
-    border-bottom-right-radius: 0
+    border-bottom-right-radius: 0;
+    font-family: Vazir;
 }
 
 html[dir="rtl"] .popover.top>.arrow:after,

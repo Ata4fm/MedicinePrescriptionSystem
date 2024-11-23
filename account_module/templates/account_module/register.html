@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block page-title %}
+	ثبت نام کاربر
+{% endblock %}
+
+{% block content_layout %}
+    <div class="container-fluid p-0">
+        <div class="row">
+            <div class="col-12 ">
+                <div class="login-card">
+                    <form class="theme-form login-form shadow-lg p-3 mb-5 bg-white rounded-5"
+                          action="{% url 'register-page' %}" method="post">
+                        {% csrf_token %}
+                        <h6>ثبت نام</h6>
+                        <h6>اطلاعات خود را وارد نمایید</h6>
+                        <div class="form-group">
+                            <label class="font-primary">{{ register_form.username.label_tag }}</label>
+                            <div class="input-group"><span class="input-group-text"><svg
+                                    xmlns="http://www.w3.org/2000/svg"  width="24" height="24" fill="currentColor"
+                                    class="bi bi-person-circle w-[34px] h-[34px]" viewBox="0 0 16 16"><path
+                                    d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/><path fill-rule="evenodd"
+                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                            </svg>
+                            </span>
+                                {{ register_form.username }}
+
+                            </div>
+
+                            <div class="mt-3 {% if register_form.username.errors %} text-danger form-control-danger {% endif %}">
+                                {{ register_form.username.errors }}
+                            </div>
+
+                            <label class="font-primary">{{ register_form.code.label_tag }}</label>
+                            <div class="input-group"><span class="input-group-text">
+                                    <svg class="w-[34px] h-[34px] text-gray-800 dark:text-white" aria-hidden="true"
+                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                         viewBox="0 0 24 24">
+                                      <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                                            d="M2.9917 4.9834V18.917M9.96265 4.9834V18.917M15.9378 4.9834V18.917m2.9875-13.9336V18.917"/>
+                                      <path stroke="currentColor" stroke-linecap="round"
+                                            d="M5.47925 4.4834V19.417m1.9917-14.9336V19.417M21.4129 4.4834V19.417M13.4461 4.4834V19.417"/>
+                                    </svg>
+
+                            </span>
+                                {{ register_form.code }}
+
+                            </div>
+
+                            <div class="mt-3 {% if register_form.code.errors %} text-danger form-control-danger {% endif %}">
+                                {{ register_form.code.errors }}
+                            </div>
+
+                            <label class="font-primary">{{ register_form.phonenumber.label_tag }}</label>
+                            <div class="input-group"><span class="input-group-text">
+                                <svg class="w-[34px] h-[34px] text-gray-800 dark:text-white" aria-hidden="true"
+                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                     viewBox="0 0 24 24">
+                                <path d="M7.978 4a2.553 2.553 0 0 0-1.926.877C4.233 6.7 3.699 8.751 4.153 10.814c.44 1.995 1.778 3.893 3.456 5.572 1.68 1.679 3.577 3.018 5.57 3.459 2.062.456 4.115-.073 5.94-1.885a2.556 2.556 0 0 0 .001-3.861l-1.21-1.21a2.689 2.689 0 0 0-3.802 0l-.617.618a.806.806 0 0 1-1.14 0l-1.854-1.855a.807.807 0 0 1 0-1.14l.618-.62a2.692 2.692 0 0 0 0-3.803l-1.21-1.211A2.555 2.555 0 0 0 7.978 4Z"/>
+                                </svg>
+
+                            </span>
+                                {{ register_form.phonenumber }}
+
+                            </div>
+
+                            <div class="mt-3 {% if register_form.phonenumber.errors %} text-danger form-control-danger {% endif %}">
+                                {{ register_form.phonenumber.errors }}
+                            </div>
+                        </div>
+                        <div class="form-group text-center">
+                            <button class="btn btn-primary" type="submit">ثبت</button>
+                        </div>
+                        <div class="login-social-title">
+                            <h5>ورود</h5>
+                        </div>
+                        <h6 class="text-center">آیا حساب کاربری از قبل دارید؟<a class="ms-2"
+                                                                                href="{% url 'login-page' %}">ورود به
+                            حساب کاربری</a></h6>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -60,11 +60,44 @@
                                         <td v-text="data.id"></td>
                                         <td v-text="data.name"></td>
                                         <td v-text="data.category"></td>
-                                        <td v-text="data.short_desc"></td>
-
+                                        <td v-text="data.short_desc">{</td>
                                     </tr>
                                     </tbody>
                                 </table>
+                                <p class="pt-5 pb-5" v-if="random_lists.length === 0">هیچ داده‌ای موجود نیست.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row list-persons" id="addcon">
+                        <div class="col-xl-12 col-md-4">
+                            <div class="tab-content" id="v-pills-tabContent">
+                                <div class="tab-pane contact-tab-0 tab-content-child fade show active" id="v-pills-user"
+                                     role="tabpanel" aria-labelledby="v-pills-user-tab">
+                                    <div class="profile-mail">
+                                        <ul class="pagination justify-content-center pagination-primary">
+
+                                            <li class="page-item">
+                                                <button class="page-link" v-if="previous" @click="getData(previous)">
+                                                    قبلی
+                                                </button>
+                                            </li>
+
+                                                <button
+                                                        class="page-link page-item font-primary"
+                                                        v-for="page in page_numbers"
+                                                        v-text="page"
+                                                        @click="goToPage(page)"
+                                                >
+                                                </button>
+
+                                            <li class="page-item">
+                                                <button class="page-link" v-if="next" @click="getData(next)">بعدی
+                                                </button>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -82,32 +115,62 @@
     <script src="https://cdn.jsdelivr.net/npm/@riophae/vue-treeselect@^0.4.0/dist/vue-treeselect.umd.min.js"></script>
 
     <script>
-    new Vue({
+        new Vue({
             el: "#app2",
             data: {
                 search: "",
                 random_lists: [],
+                current_page: 1,
+                total_pages: 0,
+                next: null,
+                previous: null,
+                page_numbers: []
             },
             beforeMount() {
                 this.getData();
             },
             methods: {
-                getData() {
-                    var self = this;
-                    var url = "/dashboard/medicine/api/medicines/?";
 
-                    if(self.search) {
+                getData(url = "/dashboard/medicine/api/medicines/") {
+                    var self = this;
+                    if (self.search) {
                         url += "search=" + self.search;
                     }
                     $.get(url)
                         .done(function (response) {
-                            self.random_lists = response;
+                            self.random_lists = response.results;
+                            console.log("Response:", response);
+                            self.next = response.next;
+                            self.previous = response.previous;
+
+                            const urlParams = new URLSearchParams(url.split('?')[1]);
+                            self.current_page = urlParams.get('page') ? parseInt(urlParams.get('page')) : 1;
+
+                            self.total_pages = Math.ceil(response.count / 2); // فرض: 10 آیتم در هر صفحه
+                            self.page_numbers = Array.from({length: self.total_pages}, (_, i) => i + 1);
                         })
+                        .fail(function (error) {
+                            console.error("خطا در دریافت داده", error)
+                        });
                 },
+                goToPage(page) {
+                    const url = `/dashboard/medicine/api/medicines/?page=${page}`;
+                    this.getData(url);
+                },
+                nextPage() {
+                    if (this.next) {
+                        this.getData(this.next);
+                    }
+                },
+                previousPage() {
+                    if (this.previous) {
+                        this.getData(this.previous);
+                    }
+                }
 
             },
-            watch:{
-                "search": function (){
+            watch: {
+                "search": function () {
                     this.getData();
                 }
             }
