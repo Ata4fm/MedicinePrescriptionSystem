@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'jalali_date',
+    'django_render_partial',
 
     'patient_module',
     'account_module.apps.AccountModuleConfig',

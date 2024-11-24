@@ -37299,7 +37299,8 @@ body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) tr,
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) td,
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) th {
-    border-color: #374558
+    border-color: #374558;
+    --bs-table-bg: #242a33;
 }
 
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table th,

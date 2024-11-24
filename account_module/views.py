@@ -8,7 +8,6 @@ from .forms import LoginForm,CheckOTPForm,RegisterForm
 from .models import OTP
 from patient_module.models import Patient
 import random
-
 import ghasedakpack
 
 sms = ghasedakpack.Ghasedak('0f5ca0462d55e9ed8c1118b234c3bf78b19a21b7f91b5703d3b2480cde975cb0')
@@ -76,6 +75,7 @@ class CheckOTPView(View):
                 otp_form.add_error('otp','کد وارد شده اشتباه میباشد')
         else:
             otp_form.add_error("otp","فرم معتبر نیست")
+
         context = {
             'form': otp_form
         }
