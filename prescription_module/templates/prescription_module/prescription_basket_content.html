@@ -1,0 +1,98 @@
+{% if prescription.prescriptiondetails_set.all %}
+            <div class="container-fluid pt-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header pb-0">
+                                <h5>نسخه دارو</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="order-history table-responsive wishlist">
+
+                                        <table class="table table-bordered">
+                                            <thead>
+                                            <tr>
+                                                <th> شناسه دارو</th>
+                                                <th>نام دارو</th>
+                                                <th>تعداد</th>
+                                                <th>توضیحات مصرف</th>
+                                                <th>عملیات</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for detail in prescription.prescriptiondetails_set.all %}
+                                                <tr>
+                                                    <td>{{ detail.medicine.id }}</td>
+                                                    <td>
+                                                        <div class="product-name"><a>
+                                                            <h6>{{ detail.medicine.name }}</h6>
+                                                        </a></div>
+                                                    </td>
+                                                    <td width="100">
+                                                        <fieldset class="qty-box border-0">
+                                                            <div class="input-group bootstrap-touchspin">
+                                                                <button class="btn btn-primary btn-square bootstrap-touchspin-down" type="button" onclick="changePrescriptionDetailCount({{ detail.id }},'increase')">
+                                                                    +
+                                                                </button>
+                                                                <span class="input-group-text bootstrap-touchspin-prefix"
+                                                                      style="display: none;"></span><input
+                                                                    class="touchspin text-center form-control"
+                                                                    type="text"
+                                                                    value="{{ detail.count }}"
+                                                                    style="display: block;"><span
+                                                                    class="input-group-text bootstrap-touchspin-postfix"
+                                                                    style="display: none;"></span>
+                                                                <button class="btn btn-primary btn-square bootstrap-touchspin-up" type="button" onclick="changePrescriptionDetailCount({{ detail.id }},'decrease')">
+                                                                    -
+                                                                </button>
+                                                            </div>
+                                                        </fieldset>
+                                                    </td>
+                                                    <td>{{ detail.medicine.short_desc }}</td>
+                                                    <td>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                             viewBox="0 0 24 24" fill="none"
+                                                             stroke="currentColor" stroke-width="2"
+                                                             stroke-linecap="round"
+                                                             stroke-linejoin="round"
+                                                             class="feather feather-x-circle"
+                                                             onclick="removeOrderDetail({{ detail.id }})">
+                                                            <circle cx="12" cy="12" r="10"></circle>
+                                                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                                                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                                                        </svg>
+                                                    </td>
+                                                </tr>
+
+                                            {% endfor %}
+
+
+                                            </tbody>
+                                        </table>
+                                        <div class="pt-3 pull-right">
+                                            <a class="btn btn-success cart-btn-transform" href="checkout.html"> تایید
+                                                نسخه</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="container-fluid pt-5">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="alert alert-primary text-center">
+                                    <p>هیچ نسخه ایی برای تجویز دارو برای بیمار ندارید!!!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}

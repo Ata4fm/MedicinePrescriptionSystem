@@ -7,7 +7,6 @@ class AddPatientModelForm(forms.ModelForm):
     class Meta:
         model = Patient
         fields = ['code','username','first_name','last_name','password', 'phonenumber', 'age', 'address', 'information', 'gender']
-
         widgets = {
             'code': forms.TextInput(
                 attrs={

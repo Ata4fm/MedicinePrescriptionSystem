@@ -15,6 +15,32 @@
     src: url("https://filenter.ir/Zeta/assets/fonts/IRANSansWeb_Light.woff2") format("woff2");
     src: url("https://filenter.ir/Zeta/assets/fonts/IRANSansWeb_Light.woff") format("woff");
 }
+@font-face {
+        font-family: 'Vazir';
+        src: url('/static/fonts/Vazir.ttf') format('truetype');
+    }
+    body {
+        font-family: 'Vazir', sans-serif;
+        direction: rtl;
+        text-align: right;
+    }
+    table {
+        display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    unicode-bidi: isolate;
+    border-spacing: 2px;
+    border-collapse: collapse;
+    border-color: gray;
+    }
+    th, td {
+        padding: 10px;
+        text-align: center;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
 
 .font-roboto {
     font-family: Vazir;

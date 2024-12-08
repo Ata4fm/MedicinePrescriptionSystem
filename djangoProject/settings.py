@@ -47,10 +47,12 @@ INSTALLED_APPS = [
     'jalali_date',
     'django_render_partial',
 
-    'patient_module',
+    'user_panel_module.apps.UserPanelModuleConfig',
+    'prescription_module.apps.PrescriptionModuleConfig',
+    'patient_module.apps.PatientModuleConfig',
     'account_module.apps.AccountModuleConfig',
     'home.apps.HomeConfig',
-    'medicine_module',
+    'medicine_module.apps.MedicineModuleConfig',
 
 
 
@@ -185,3 +187,9 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+WKHTMLTOPDF_CMD_OPTIONS = {
+    'quiet': True,
+    'encoding': 'UTF-8',
+    'no-outline': True,  # حذف outline در PDF
+}

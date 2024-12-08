@@ -460,3 +460,31 @@ $(".color-selector ul li ").on("click", function (e) {
 $(document).ready(function () {
   $("body").addClass("rtl");
 });
+
+
+
+document.querySelector('#form-container form').addEventListener('submit', function (event) {
+    event.preventDefault(); // جلوگیری از ارسال فرم پیش‌فرض
+
+    const formData = new FormData(this);
+    const actionUrl = this.getAttribute('action');
+
+    fetch(actionUrl, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': "{{ csrf_token }}",
+        },
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert("اطلاعات با موفقیت ذخیره شد!"); // پیام موفقیت
+                location.reload(); // یا فرم را ببندید
+            } else {
+                // به‌روزرسانی بخش فرم با محتوای جدید شامل ارورها
+                document.getElementById('form-container').innerHTML = data.html;
+            }
+        })
+        .catch(error => console.error("خطا:", error));
+});

@@ -16,7 +16,6 @@ sms = ghasedakpack.Ghasedak('0f5ca0462d55e9ed8c1118b234c3bf78b19a21b7f91b5703d3b
 
 
 class LoginView(View):
-
     def dispatch(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('home')
@@ -54,6 +53,11 @@ class LoginView(View):
 
 
 class CheckOTPView(View):
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
+
     def get(self, request):
         form = CheckOTPForm()
         context = {

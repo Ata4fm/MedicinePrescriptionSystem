@@ -1,0 +1,120 @@
+{% extends 'layout.html' %}
+{% load render_partial %}
+
+{% block body-title %}
+    تجویز نسخه
+{% endblock %}
+{% block body-link-title %}
+    تجویز نسخه
+{% endblock %}
+
+{% block page-title %}
+    تجویز نسخه
+{% endblock %}
+
+{% block content %}
+    <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-xl"
+            data-bs-original-title="" title="">ایجاد نسخه
+    </button>
+    <div class="modal fade bd-example-modal-xl" tabindex="-1" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">نسخه دارو</h4>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"
+                            data-bs-original-title="" title=""></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div id="app2" class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <label class="pull-right">
+                                        {{ search_form }}
+                                    </label>
+                                    <h5>دارو ها</h5>
+                                    <span>از این قسمت دکتر عزیز، دارو های مورد نظر را برای بیمار انتخاب کنید.</span>
+                                    <div id="advance-2_filter" class="dataTables_filter pt-4 w-25">
+
+                                    </div>
+                                    <div class="card-body row">
+                                        <div class="col-sm-12 col-lg-12 col-xl-12">
+                                            <div class="table-responsive">
+                                                <div id="advance-2_filter" class="dataTables_filter">
+                                                </div>
+                                                <table class="table">
+                                                    <thead class="table-primary">
+
+                                                    <tr>
+                                                        <th scope="col">شناسه دارو</th>
+                                                        <th scope="col">نام دارو</th>
+                                                        <th scope="col">دسته بندی</th>
+                                                        <th scope="col">دستور مصرف</th>
+                                                        <th scope="col">عملیات</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="box">
+                                                    <tr v-for="data in random_lists">
+                                                        <td v-text="data.id"></td>
+                                                        <td v-text="data.name"></td>
+                                                        <td v-text="data.category_name"></td>
+                                                        <td v-text="data.short_desc"></td>
+                                                        <td>
+                                                            <button :onclick="'addMedicineToPrescription(' + data.id + ')'"
+                                                                    class="btn btn-outline-primary-2x btn-xs">
+                                                                اضافه کردن
+
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                                <p class="pt-5 pb-5" v-if="random_lists.length === 0">هیچ داده‌ای موجود
+                                                    نیست.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                                        <div class="tab-content" id="v-pills-tabContent">
+                                            <ul class="pagination justify-content-center pagination-primary"
+                                                v-if="next !== null || previous !== null">
+
+                                                <li class="page-item">
+                                                    <button class="page-link" v-if="previous"
+                                                            @click="getData(previous)">
+                                                        قبلی
+                                                    </button>
+                                                </li>
+
+                                                <button
+                                                        class="page-link page-item font-primary"
+                                                        v-for="page in page_numbers"
+                                                        v-text="page"
+                                                        @click="goToPage(page)"
+                                                >
+                                                </button>
+
+                                                <li class="page-item">
+                                                    <button class="page-link" v-if="next" @click="getData(next)">
+                                                        بعدی
+                                                    </button>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="order-detail-content">
+        {% include 'prescription_module/prescription_basket_content.html'%}
+    </div>
+{% endblock %}

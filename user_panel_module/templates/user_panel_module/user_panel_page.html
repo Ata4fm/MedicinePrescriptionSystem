@@ -1,0 +1,191 @@
+{% extends 'layout.html' %}
+{% load render_partial %}
+
+
+{% block page-title %}حساب کاربری{% endblock %}
+{% block body-link-title %}حساب کاربری{% endblock %}
+
+{% block content %}
+    <div class="col-xl-12 col-md-12 box-col-12 xl-70">
+        <div class="email-right-aside bookmark-tabcontent contacts-tabs">
+            <div class="card email-body radius-left">
+                <div class="ps-0">
+                    <div class="tab-content">
+                        <div class="tab-pane fade active show" id="pills-personal" role="tabpanel"
+                             aria-labelledby="pills-personal-tab">
+                            <div class="card mb-0">
+                                <div class="card-header d-flex">
+                                    <h5>حساب کاربری شما</h5>
+                                </div>
+                                <div class="card-body p-5">
+                                    {% if request.user.is_superuser or request.user.is_staff %}
+                                        <h5>اطلاعات حساب کاربری دکتر </h5>
+                                    {% else %}
+                                        <h5> اطلاعات حساب کاربری بیمار</h5>
+                                    {% endif %}
+                                    <div class="row list-persons" id="addcon">
+                                        <div class="col-xl-12 col-md-4">
+                                            <div class="tab-content" id="v-pills-tabContent">
+                                                <div class="tab-pane contact-tab-0 tab-content-child fade show active"
+                                                     id="v-pills-user" role="tabpanel"
+                                                     aria-labelledby="v-pills-user-tab">
+                                                    <div class="profile-mail">
+                                                        <div class="media align-items-center">
+                                                            <div class="media-body mt-0">
+                                                                <br>
+                                                                <ul>
+                                                                    <li>
+                                                                        <a type="button" class="font-primary"
+                                                                           data-bs-toggle="modal"
+                                                                           data-bs-target=".bd-example-modal-xl"
+                                                                           data-bs-original-title="" title="">ویرایش</a>
+                                                                        <div class="modal fade bd-example-modal-xl"
+                                                                             tabindex="-1" style="display: none;"
+                                                                             aria-hidden="true">
+                                                                            <div class="modal-dialog modal-xl">
+                                                                                <div class="modal-content">
+                                                                                    <div class="modal-header">
+                                                                                        <h4 class="modal-title">تغییر
+                                                                                            اطلاعات کاربری</h4>
+                                                                                        <button class="btn-close"
+                                                                                                type="button"
+                                                                                                data-bs-dismiss="modal"
+                                                                                                aria-label="Close"
+                                                                                                data-bs-original-title=""
+                                                                                                title=""></button>
+                                                                                    </div>
+                                                                                    <div class="modal-body">
+                                                                                        <div id="form-container" class="col-xl-12">
+                                                                                            <form enctype="multipart/form-data" method="post" action="{% url 'edit_user_profile' %}">
+                                                                                                {% csrf_token %}
+                                                                                                {% render_partial 'edit_user_profile' %}
+
+
+                                                                                            </form>
+                                                                                            <!-- Container-fluid Ends-->
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </li>
+{#                                                                    <li><a href="{% url 'generate_patient_pdf' %}" class="btn btn-primary">چاپ</a></li>#}
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="email-general">
+                                                            <ul>
+                                                                <li>
+                                                                    {% if request.user.is_superuser or request.user.is_staff %}
+                                                                        نام دکتر
+                                                                    {% else %}
+                                                                        نام بیمار
+                                                                    {% endif %}
+                                                                    <span
+                                                                            class="font-primary first_name_0">{{ user.first_name }} {{ user.last_name }}</span>
+                                                                </li>
+                                                                <li>
+                                                                    {% if request.user.is_superuser or request.user.is_staff %}
+                                                                        جنسیت دکتر
+                                                                    {% else %}
+                                                                        جنسیت بیمار
+                                                                    {% endif %}
+                                                                    <span
+                                                                            class="font-primary">{{ user.gender }}</span>
+                                                                </li>
+                                                                <li>
+                                                                    {% if request.user.is_superuser or request.user.is_staff %}
+                                                                        سن دکتر
+                                                                    {% else %}
+                                                                        سن بیمار
+                                                                    {% endif %}
+                                                                    <span class="font-primary">{{ user.age }}</span>
+                                                                </li>
+                                                                <li>
+                                                                    {% if request.user.is_superuser or request.user.is_staff %}
+                                                                        شماره موبایل دکتر
+                                                                    {% else %}
+                                                                        شماره موبایل بیمار
+                                                                    {% endif %}
+                                                                    <span
+                                                                            class="font-primary mobile_num_0">{{ user.phonenumber }}</span>
+                                                                </li>
+                                                                {% if not request.user.is_superuser or not request.user.is_staff %}
+                                                                    <li>سوابق بیماری
+                                                                        {% if user.information %}
+                                                                            {% for info in user.information.all %}
+                                                                                <span class="font-primary email_add_0">
+                                                                                {{ info }} |
+                                                                            </span>
+                                                                            {% endfor %}
+                                                                        {% endif %}
+                                                                    </li>
+                                                                {% endif %}
+                                                                <li>
+                                                                    {% if request.user.is_superuser or request.user.is_staff %}
+                                                                        آدرس دکتر
+                                                                    {% else %}
+                                                                        آدرس بیمار
+                                                                    {% endif %}
+                                                                    <span
+                                                                            class="font-primary url_add_0">{{ user.address }}</span>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if not request.user.is_superuser or not request.user.is_staff %}
+                <div class="tab-content pb-5">
+                    <div class="tab-pane fade active show" id="pills-personal" role="tabpanel"
+                         aria-labelledby="pills-personal-tab">
+                        <div class="card mb-0">
+                            <div class="card-header d-flex">
+                                <h5>فایل های بیمار</h5>
+                            </div>
+                            <div class="card-body p-5">
+                                <div class="row list-persons" id="addcon">
+                                    <div class="col-xl-12 col-md-4">
+                                        <div class="tab-content" id="v-pills-tabContent">
+                                            <div class="tab-pane contact-tab-0 tab-content-child fade show active"
+                                                 id="v-pills-user" role="tabpanel"
+                                                 aria-labelledby="v-pills-user-tab">
+                                                <div class="profile-mail">
+                                                    {% if user.file %}
+                                                        <h5>
+                                                            <a href="{{ user.file.url }}">
+                                                                {{ user.file }}
+                                                            </a>
+                                                        </h5>
+                                                    {% else %}
+                                                        <div class="text-center">
+                                                            <span class="font-roboto">فایلی در این قسمت آپلود نشده است</span>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+
+
+
+{% endblock %}

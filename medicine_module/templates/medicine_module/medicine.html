@@ -26,17 +26,13 @@
 
 
         <div id="app2" class="col-sm-12">
-
-
             <div class="card">
                 <div class="card-header">
+                    <label class="pull-right">
+                        {{ search_form }}
+                        </label>
                     <h5>مشخصات دارو ها</h5>
                     <span>از این قسمت دکتر عزیز، میتوانید تمامی دارو های موجود را مشاهده نمایید.</span>
-
-                    <div id="advance-2_filter" class="dataTables_filter">
-                        <label>جستجو : <input type="text" v-model="search" class="form-control">
-                        </label>
-                    </div>
 
                     <div class="card-body row">
                         <div class="col-sm-12 col-lg-12 col-xl-12">
@@ -68,13 +64,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row list-persons" id="addcon">
-                        <div class="col-xl-12 col-md-4">
+                </div>
+                    <div class="row mb-4">
+                        <div class="col-sm-12 col-lg-12 col-xl-12">
                             <div class="tab-content" id="v-pills-tabContent">
-                                <div class="tab-pane contact-tab-0 tab-content-child fade show active" id="v-pills-user"
-                                     role="tabpanel" aria-labelledby="v-pills-user-tab">
-                                    <div class="profile-mail">
-                                        <ul class="pagination justify-content-center pagination-primary" v-if="next !== null || previous !== null">
+                                        <ul class="pagination justify-content-center pagination-primary"
+                                            v-if="next !== null || previous !== null">
 
                                             <li class="page-item">
                                                 <button class="page-link" v-if="previous" @click="getData(previous)">
@@ -82,30 +77,37 @@
                                                 </button>
                                             </li>
 
-                                                <button
-                                                        class="page-link page-item font-primary"
-                                                        v-for="page in page_numbers"
-                                                        v-text="page"
-                                                        @click="goToPage(page)"
-                                                >
-                                                </button>
+                                            <button
+                                                    class="page-link page-item font-primary"
+                                                    v-for="page in page_numbers"
+                                                    v-text="page"
+                                                    @click="goToPage(page)"
+                                            >
+                                            </button>
 
                                             <li class="page-item">
-                                                <button class="page-link" v-if="next" @click="getData(next)">بعدی
+                                                <button class="page-link" v-if="next" @click="getData(next)">
+                                                    بعدی
                                                 </button>
                                             </li>
 
                                         </ul>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
             </div>
         </div>
     </div>
 
+
+    <div class="card">
+                    <p>
+                    <a href="{% url 'prescription' %}">
+                       مشاهده انبار نسخه
+                    </a>
+                </p>
+                </div>
 
 
 

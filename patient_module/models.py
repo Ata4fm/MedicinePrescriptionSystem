@@ -25,7 +25,6 @@ class PatientGender(models.Model):
         verbose_name_plural = 'جنسیت بیماران'
 
 class Patient(AbstractUser):
-
     code = models.CharField(db_index=True, primary_key=True,max_length=10, unique=True, verbose_name='کد ملی')
     phonenumber = models.CharField(max_length=11, verbose_name='شماره تلفن',validators=[MaxLengthValidator(11)])
     age = models.CharField(max_length=5,verbose_name='سن', null=True, blank=True)
@@ -36,7 +35,7 @@ class Patient(AbstractUser):
 
 
     def __str__(self):
-        return f'{self.code} - {self.phonenumber}'
+        return f'{self.code}'
 
     class Meta:
         verbose_name = 'بیمار'

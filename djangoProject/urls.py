@@ -28,8 +28,11 @@ urlpatterns = [
     path('dashboard/patients/',include('patient_module.urls')),
     path('dashboard/',include('home.urls')),
     path('dashboard/medicine/',include('medicine_module.urls')),
+    path('dashboard/medicine/prescription/',include('prescription_module.urls')),
+    path('dashboard/user-panel/',include('user_panel_module.urls')),
 
     path("api-drf/", include("rest_framework.urls")),
+
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
