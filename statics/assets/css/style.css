@@ -6,7 +6,7 @@
 -----------------------------------------------------------------------------------
  */
 :root {
-    --theme-deafult: #6362e7;
+    --theme-deafult: #007d99;
     --theme-secondary: #ffc500
 }
 
@@ -3239,7 +3239,7 @@ strong~p {
 }
 
 .alert-primary {
-    background-color: rgba(99, 98, 231, 0.8);
+    background-color: #007d99;
     border-color: rgba(99, 98, 231, 0.9);
     color: #fff
 }
@@ -17319,11 +17319,11 @@ html[dir="rtl"] .ribbon-clip-right {
 .table thead.table-primary {
     background-color: rgba(99, 98, 231, 0.1);
     --bs-table-bg: rgba($primary-color, 0.1);
-    color: #6362e7
+    color: #007d99
 }
 
 .table thead.table-primary tr th {
-    color: #6362e7
+    color: #007d99
 }
 
 .table-primary thead tr th {
@@ -36383,8 +36383,8 @@ body.dark-only [class*="activity-dot-"] {
 }
 
 body.dark-only .alert-primary {
-    background-color: rgba(99, 98, 231, 0.8) !important;
-    border-color: rgba(99, 98, 231, 0.9) !important;
+    background-color: #007d99 !important;
+    border-color: #007d99 !important;
     color: #fff
 }
 
@@ -37356,7 +37356,7 @@ body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-light td,
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-danger th,
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .table-danger td {
-    color: #6362e7
+    color: #007d99
 }
 
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .table .bg-primary,
