@@ -1,9 +1,13 @@
+
+
 from django.http import HttpRequest, JsonResponse, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
-from django.views.generic import TemplateView, View
+from django.urls import reverse
+from django.views.generic import TemplateView, View, ListView, DetailView
 
 from patient_module.models import Patient
+from prescription_module.models import Prescription
 from .forms import EditProfileModelForm
 
 
@@ -34,3 +38,23 @@ class EditProfileView(View):
         html = render_to_string('user_panel_module/edit_profile_component.html',
                                 {'form': edit_form}, request)
         return JsonResponse({'success': False, 'html': html})
+
+
+class MyPrescription(ListView):
+    model = Prescription
+    template_name = 'user_panel_module/my_my-prescription.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        request: HttpRequest = self.request
+        queryset = queryset.filter(patient_id=request.user.code, is_submitted=True)
+        return queryset
+
+class MyPrescriptionDetail(DetailView):
+    template_name = 'user_panel_module/my_my-prescription-detail.html'
+    model = Prescription
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect(reverse('login'))
+        return super().dispatch(request, *args, **kwargs)

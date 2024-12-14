@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% load jalali_tags %}
+
+{% block body-title %}
+    مشاهده نسخه های
+{% endblock %}
+
+{% block page-title %}
+    نسخه های من
+{% endblock %}
+
+{% block body-link-title %}
+    نسخه ها
+{% endblock %}
+
+{% block content %}
+    <div class="containter-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>نسخه دارو ها</h5><span>بر روی جزئیات کلیک کرده و مشخصات نسخه را مشاهده نمایید</span>
+                    </div>
+                    <div class="card-block row">
+                        <div class="col-sm-12 col-lg-12 col-xl-12">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class="table-primary">
+                                    <tr>
+                                        <th scope="col">شناسه نسخه</th>
+                                        <th scope="col">نام</th>
+                                        <th scope="col">نام پزشک</th>
+                                        <th scope="col">تاریخ ایجاد شده</th>
+                                        <th scope="col">جزئیات</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for prescription in object_list %}
+                                        <tr>
+                                            <th scope="row">{{ prescription.id }}</th>
+                                            <td>{{ prescription.patient.get_full_name }}</td>
+                                            <td>{{ prescription.doctor.get_full_name }}</td>
+                                            <td>{{ prescription.created_date|to_jalali }}</td>
+                                            <td><a class="btn btn-primary"
+                                                   href="{% url 'my-prescription-detail' pk=prescription.id %}">جزئیات</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -129,12 +129,65 @@ new Vue({
 
 })
 
+new Vue({
+    el: "#app5",
+    data: {
+        search: "", // مقدار ورودی جستجو
+        patients: [], // لیست بیماران
+        loading: false, // وضعیت در حال بارگذاری
+    },
+    methods: {
+        getData() {
+            const url = "api/patient-search/";
+
+            // ارسال درخواست به API
+            this.loading = true; // فعال کردن وضعیت بارگذاری
+            $.get(`${url}?q=${this.search}`)
+                .done((response) => {
+                    if (response.status === "success") {
+                        this.patients = response.data;
+                    } else if (response.status === "not_found") {
+                        console.log(response.message); // پیام "هیچ بیماری یافت نشد"
+                        this.patients = [];
+                    }
+                })
+                .always(() => {
+                    this.loading = false; // غیرفعال کردن وضعیت بارگذاری
+                });
+        },
+        selectPatient(patient) {
+            // وقتی کاربر یک بیمار را انتخاب می‌کند
+            if (patient && patient.code && patient.first_name && patient.last_name) {
+                let timerInterval;
+                Swal.fire({
+                    icon: 'success',
+                    title: "اعلان",
+                    html: `بیمار ${patient.code}-${patient.first_name + ' ' + patient.last_name} با موفقیت انتخاب شد`,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        const timer = Swal.getPopup().querySelector("b");
+                        timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                        }, 100);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                });
+                this.search = `${patient.code}`; // نمایش بیمار انتخاب‌شده در input
+            }
+            this.patients = []; // پاک کردن لیست نتایج
+        },
+    },
+});
+
 
 function addMedicineToPrescription(medicineId) {
     $.get('/dashboard/medicine/prescription/add-prescription?medicine_id=' + medicineId + '&count=' + 1).then(res => {
-        if(res.status === 'success'){
-           $('#order-detail-content').html(res.body);
-       }
+        if (res.status === 'success') {
+            $('#order-detail-content').html(res.body);
             let timerInterval;
             Swal.fire({
                 icon: res.icon,
@@ -153,22 +206,137 @@ function addMedicineToPrescription(medicineId) {
                     clearInterval(timerInterval);
                 }
             });
+        }
+
 
     });
 }
 
-function removeOrderDetail(detailId){
+function removeOrderDetail(detailId) {
     $.get('/dashboard/medicine/prescription/remove-prescription-detail?detail_id=' + detailId).then(res => {
-       if(res.status === 'success'){
-           $('#order-detail-content').html(res.body);
-       }
+        if (res.status === 'success') {
+            $('#order-detail-content').html(res.body);
+        }
     });
 }
 
-function changePrescriptionDetailCount(detailId, state){
+function changePrescriptionDetailCount(detailId, state) {
     $.get('/dashboard/medicine/prescription/change-prescription-detail-count?detail_id=' + detailId + '&state=' + state).then(res => {
-       if(res.status === 'success'){
-           $('#order-detail-content').html(res.body);
-       }
+        if (res.status === 'success') {
+            $('#order-detail-content').html(res.body);
+        }
     });
 }
+
+function getCSRFToken() {
+    const cookieValue = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('csrftoken='))
+        ?.split('=')[1];
+    return cookieValue;
+}
+
+$(document).ready(function () {
+    $('#check-patient-form').on('submit', function (e) {
+        e.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
+
+        const patientCode = $('#patient').val(); // دریافت کد ملی از input
+        console.log(patientCode)
+        const csrfToken = getCSRFToken(); // دریافت توکن CSRF
+
+        $.ajax({
+            url: 'submit-prescription/',
+            type: 'POST',
+            data: {
+                patient: patientCode,
+            },
+            headers: {
+                'X-CSRFToken': csrfToken // اضافه کردن توکن CSRF به هدر درخواست
+            },
+            success: function (res) {
+                if (res.status === 'success') {
+                    $('#order-detail-content').html(res.body);
+                    let timerInterval;
+                    Swal.fire({
+                        title: "اعلان",
+                        icon: res.icon,
+                        text: res.message,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading();
+                            const timer = Swal.getPopup().querySelector("b");
+                            timerInterval = setInterval(() => {
+                                timer.textContent = `${Swal.getTimerLeft()}`;
+                            }, 100);
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                        }
+                    });
+                }
+                else {
+                    let timerInterval;
+                    Swal.fire({
+                        title: "اعلان",
+                        icon: res.icon,
+                        text: res.message,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading();
+                            const timer = Swal.getPopup().querySelector("b");
+                            timerInterval = setInterval(() => {
+                                timer.textContent = `${Swal.getTimerLeft()}`;
+                            }, 100);
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                        }
+                    });
+                }
+                if(!patientCode){
+                    let timerInterval;
+                    Swal.fire({
+                        title: "اعلان",
+                        icon: 'warning',
+                        text: 'لطفا کد ملی را وارد نمایید',
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: () => {
+                            Swal.showLoading();
+                            const timer = Swal.getPopup().querySelector("b");
+                            timerInterval = setInterval(() => {
+                                timer.textContent = `${Swal.getTimerLeft()}`;
+                            }, 100);
+                        },
+                        willClose: () => {
+                            clearInterval(timerInterval);
+                        }
+                    });
+                }
+            },
+            error: function () {
+                let timerInterval;
+                Swal.fire({
+                    title: "اعلان",
+                    icon: "خطا در ارتباط",
+                    text: "مشکلی در ارسال اطلاعات رخ داده است.",
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: () => {
+                        Swal.showLoading();
+                        const timer = Swal.getPopup().querySelector("b");
+                        timerInterval = setInterval(() => {
+                            timer.textContent = `${Swal.getTimerLeft()}`;
+                        }, 100);
+                    },
+                    willClose: () => {
+                        clearInterval(timerInterval);
+                    }
+                });
+            }
+        });
+    });
+});
+

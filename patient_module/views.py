@@ -3,9 +3,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView
-from rest_framework.permissions import BasePermission
-from rest_framework.response import Response
-from rest_framework.reverse import reverse
+
 
 from .models import Patient
 from .forms import AddPatientModelForm
@@ -14,6 +12,7 @@ from rest_framework import viewsets, filters, permissions
 from .serializers import PatientSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.reverse import reverse
 
 
 class StandardResultsSetPagination(PageNumberPagination):

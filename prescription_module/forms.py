@@ -15,3 +15,5 @@ class PatientForm(forms.ModelForm):
                 }
             ),
         }
+
+

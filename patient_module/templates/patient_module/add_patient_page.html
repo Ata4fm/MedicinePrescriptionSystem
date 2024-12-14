@@ -110,25 +110,14 @@
 
                                     <div class="mb-3 row">
                                         <div class="col-sm-3 col-lg-3 col-md-3 col-form-label">
-                                            {{ form.gender.label }}
+                                            <label>{{ form.gender.label }}:</label>
                                         </div>
                                         <div class="col-sm-2 {% if form.gender.errors %} text-danger form-control-danger {% endif %}">
+
                                             {{ form.gender }}
                                             {{ form.gender.errors }}
                                         </div>
                                     </div>
-
-                                <div class="mb-3 row ">
-                                        <div class="col-sm-3 col-lg-3 col-md-3 col-form-label ">
-                                            {{ form.password.label_tag }}
-                                        </div>
-                                        <div class="col-sm-4 {% if form.password.errors %} text-danger form-control-danger {% endif %}">
-                                            {{ form.password }}
-                                            {{ form.password.errors }}
-                                        </div>
-                                    </div>
-
-
 
                                     <button type="submit" class="btn btn-primary">ارسال</button>
 
