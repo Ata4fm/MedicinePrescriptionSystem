@@ -21,7 +21,6 @@ class StandardResultsSetPagination(PageNumberPagination):
     max_page_size = 50
 
 
-# @method_decorator(login_required, name='dispatch')
 class PatientViewSet(viewsets.ModelViewSet):
 
     def dispatch(self, request, *args, **kwargs):

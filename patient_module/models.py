@@ -29,13 +29,17 @@ class Patient(AbstractUser):
     phonenumber = models.CharField(max_length=11, verbose_name='شماره تلفن',validators=[MaxLengthValidator(11)])
     age = models.CharField(max_length=5,verbose_name='سن', null=True, blank=True)
     address = models.CharField(max_length=100, verbose_name='آدرس',null=True, blank=True)
-    information = models.ManyToManyField(PatientHealthyInformation,default='موردی ندارم',null=True,blank=True,verbose_name='اطلاعات سوابق بیماری')
+    information = models.ManyToManyField(PatientHealthyInformation,default='موردی ندارم',null=True,blank=True,
+                                         verbose_name='اطلاعات سوابق بیماری')
     gender = models.ForeignKey(PatientGender, on_delete=models.CASCADE, null=True, blank=True,verbose_name='جنسیت')
     file = models.FileField(upload_to='patients/',verbose_name='آپلود فایل',null=True, blank=True)
 
 
     def __str__(self):
         return f'{self.code}'
+
+    def get_full_name(self):
+        return f'{self.first_name} {self.last_name}'
 
     class Meta:
         verbose_name = 'بیمار'

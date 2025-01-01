@@ -14,7 +14,8 @@ class MedicineCategory(models.Model):
 class Medicine(models.Model):
     name = models.CharField(max_length=100,verbose_name='نام دارو')
     short_desc = models.CharField(max_length=100,verbose_name='توضیحات مصرف')
-    category = models.ForeignKey(MedicineCategory,max_length=100,on_delete=models.CASCADE,null=True,verbose_name='دسته بندی')
+    category = models.ForeignKey(MedicineCategory,max_length=100,
+                                 on_delete=models.CASCADE,null=True,verbose_name='دسته بندی')
 
 
     def __str__(self):

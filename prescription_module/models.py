@@ -7,8 +7,12 @@ from patient_module.models import Patient
 # Create your models here.
 
 class Prescription(models.Model):
-    doctor = models.ForeignKey(Patient, on_delete=models.CASCADE, verbose_name='کد ملی پزشک',related_name='doctor',limit_choices_to={'is_superuser': True})
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE,verbose_name='کد ملی بیمار',related_name='patient',null=True,blank=True)
+    doctor = models.ForeignKey(Patient, on_delete=models.CASCADE,
+                               verbose_name='کد ملی پزشک',related_name='doctor',
+                               limit_choices_to={'is_superuser': True})
+    patient = models.ForeignKey(Patient,
+                                on_delete=models.CASCADE,verbose_name='کد ملی بیمار',
+                                related_name='patient',null=True,blank=True)
     is_submitted = models.BooleanField(verbose_name='نهایی شده/نشده')
     created_date = models.DateField(null=True,blank=True,verbose_name='تاریخ ایجاد نسخه')
 

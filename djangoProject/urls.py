@@ -20,7 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 import rest_framework
-
+from rest_framework.routers import DefaultRouter
+from medicine_module.views import MedicineViewSet
+from patient_module.views import PatientViewSet
+from prescription_module.views import PrescriptionViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,7 +36,14 @@ urlpatterns = [
 
     path("api-drf/", include("rest_framework.urls")),
 
+
 ]
+
+router = DefaultRouter()
+router.register("api/patients", PatientViewSet, basename="patients")
+router.register("api/medicines", MedicineViewSet, basename="medicines")
+router.register("api/prescription", PrescriptionViewSet, basename="prescription")
+urlpatterns+= router.urls
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,117 @@
+{% extends 'layout.html' %}
+{% load jalali_tags %}
+
+{% block body-title %}
+    مشاهده جزئیات نسخه
+{% endblock %}
+
+{% block page-title %}
+    جزئیات نسخه
+{% endblock %}
+
+{% block body-link-title %}
+    جزئیات نسخه
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="invoice">
+                            <div>
+                                <div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <button class="btn btn btn-primary me-2" type="button"
+                                                    onclick="myFunction()">چاپ
+                                            </button>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="text-md-end text-xs-center">
+                                                <h3>شناسه نسخه <span class="counter">{{ prescription.id }}</span></h3>
+                                                <p>تاریخ ثبت : <span>{{ prescription.created_date| to_jalali }}</span>
+                                                </p>
+                                                <br>
+                                                <p>نام پزشک : <span>{{ prescription.doctor.get_full_name }}</span></p>
+                                            </div>
+                                            <!-- End Title-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <!-- End InvoiceTop-->
+                                <div class="row invo-profile">
+                                    <div class="col-xl-4">
+                                        <div class="media">
+                                            <div class="media-body m-l-20">
+                                                <h4 class="media-heading pb-2">{{ prescription.patient.get_full_name }}</h4>
+                                                <p>کد ملی: {{ prescription.patient.code }}
+                                                    <br>
+                                                    شماره تماس :{{ prescription.patient.phonenumber }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead class="table-primary">
+                                            <tr>
+                                                <th class="col">
+                                                    <h6 class="mb-0">توضیحات دارو</h6>
+                                                </th>
+                                                <th class="col">
+                                                    <h6 class="mb-0">شناسه دارو</h6>
+                                                </th>
+                                                <th class="col">
+                                                    <h6 class="mb-0">نام دارو</h6>
+                                                </th>
+                                                <th class="col">
+                                                    <h6 class="mb-0">نوع دارو</h6>
+                                                </th>
+                                                <th class="col">
+                                                    <h6 class="mb-0">تعداد دارو</h6>
+                                                </th>
+                                            </tr>
+                                            </thead>
+
+
+                                            <tbody>
+
+                                            {% for detail in prescription.prescriptiondetails_set.all %}
+                                                <tr>
+                                                    <td>
+                                                        <p class="m-0">{{ detail.medicine.short_desc }}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext">{{ detail.medicine.id }}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext">{{ detail.medicine.name }}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext">{{ detail.medicine.category }}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="itemtext">{{ detail.count }}</p>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                                <!-- End InvoiceBot-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

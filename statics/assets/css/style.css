@@ -22742,7 +22742,7 @@ p.data-attributes svg {
 }
 
 .weather-widget-two {
-    background: url(../images/other-images/wallpaper.jpg);
+    background: url(../images/wallpaper.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 20px;
@@ -22886,11 +22886,11 @@ p.data-attributes svg {
     height: 175px;
     width: 175px;
     display: block;
-    background: url(../images/other-images/clock-face.png) 5% center no-repeat
+    background: url(../images/clock-face.png) 5% center no-repeat
 }
 
 .mobile-clock-widget .sec {
-    background: url(https://filenter.ir/Zeta/assets/images/sec.svg);
+    background: url(https://filenter.ir/statics/assets/images/sec.svg);
     z-index: 3
 }
 
@@ -31941,7 +31941,7 @@ ul.pro-services li:nth-child(n+2) {
     content: '';
     top: -3px;
     right: -1px;
-    background-color: #f4f4f4;
+    background-color: #4b8b76;
     width: 10px;
     height: 10px;
     border-radius: 100%;
@@ -32001,8 +32001,8 @@ ul.pro-services li:nth-child(n+2) {
 }
 
 .progress-gradient-warning {
-    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), to(#ff8819));
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #ff8819);
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), to(#7768b6));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #7768b69);
     position: relative
 }
 
@@ -32015,7 +32015,7 @@ ul.pro-services li:nth-child(n+2) {
     content: '';
     top: -3px;
     right: -1px;
-    background-color: #ff8819;
+    background-color: #7768b6;
     width: 10px;
     height: 10px;
     border-radius: 100%;
@@ -46973,8 +46973,8 @@ html[dir="rtl"] .progress-gradient-info .animate-circle {
 }
 
 html[dir="rtl"] .progress-gradient-light {
-    background-image: -webkit-gradient(linear, left top, right top, from(#f4f4f4), to(rgba(0, 0, 0, 0)));
-    background-image: linear-gradient(to right, #f4f4f4, rgba(0, 0, 0, 0))
+    background-image: -webkit-gradient(linear, left top, right top, from(#38ad88), to(rgba(0, 0, 0, 0)));
+    background-image: linear-gradient(to right, #38ad88, rgba(0, 0, 0, 0))
 }
 
 html[dir="rtl"] .progress-gradient-light::after {
@@ -47003,8 +47003,8 @@ html[dir="rtl"] .progress-gradient-dark .animate-circle {
 }
 
 html[dir="rtl"] .progress-gradient-warning {
-    background-image: -webkit-gradient(linear, left top, right top, from(#ff8819), to(rgba(0, 0, 0, 0)));
-    background-image: linear-gradient(to right, #ff8819, rgba(0, 0, 0, 0))
+    background-image: -webkit-gradient(linear, left top, right top, from(#1d97ff), to(rgba(0, 0, 0, 0)));
+    background-image: linear-gradient(to right, #1d97ff, rgba(0, 0, 0, 0))
 }
 
 html[dir="rtl"] .progress-gradient-warning::after {
@@ -52302,5 +52302,6 @@ svg * {
     stroke-width: 1.8px !Important;
 
 }
+
 
 /*# sourceMappingURL=style.css.map */

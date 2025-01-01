@@ -1,19 +1,57 @@
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse, HttpRequest
+from django.shortcuts import redirect
 from django.template.loader import render_to_string
-from django.views.generic import TemplateView
+from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.utils.timezone import now
+from django.views.generic import TemplateView, DetailView
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets, permissions, filters
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
-from django.utils.timezone import now
 
 from medicine_module.forms import SearchForm
 from medicine_module.models import Medicine
 from patient_module.models import Patient
 from .forms import PatientForm
 from .models import Prescription, PrescriptionDetails
+from .serializers import PrescriptionSerializer
 
 
 # Create your views here.
 
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 50
+
+
+class PrescriptionViewSet(viewsets.ModelViewSet):
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser or not request.user.is_authenticated:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
+
+    serializer_class = PrescriptionSerializer
+    queryset = Prescription.objects.filter(is_submitted=True)
+    permission_classes = [permissions.IsAuthenticated, permissions.IsAdminUser]
+    pagination_class = StandardResultsSetPagination
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    search_fields = ["id"]
+
+@method_decorator(login_required, name='dispatch')
+class PatientDetailView(DetailView):
+    template_name = 'prescription_module/prescription_detail.html'
+    model = Prescription
+
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser or not request.user.is_staff:
+            return redirect(reverse('home'))
+        return super().dispatch(request, *args, **kwargs)
 
 class PatientSearchAPIView(APIView):
     permission_classes = [AllowAny]

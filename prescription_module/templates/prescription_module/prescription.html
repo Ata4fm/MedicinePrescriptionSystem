@@ -119,56 +119,136 @@
 
     <form id="check-patient-form" method="post" action="{% url 'submit-prescription' %}">
         {% csrf_token %}
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="card-body">
-                        <div class="row">
-                            <div id="app5" class="pt-5" style="display: flex; align-items: center; gap: 10px;">
-                                <!-- فیلد جستجو -->
-                                <input
-
-                                        id="patient"
-                                        name="patient"
-                                        class="form-control"
-                                        style="width: 150pt"
-                                        type="text"
-                                        v-model="search"
-                                        @input="getData"
-                                        placeholder="کد ملی یا نام بیمار را وارد کنید"
-                                />
 
 
-                                <!-- لیست نتایج جستجو -->
-                                <ul v-if="patients">
-                                    <li v-for="patient in patients" :key="patient.code" @click="selectPatient(patient)">
-                                        <p style="cursor: pointer"
-                                           v-text="patient.code + ' - ' + patient.first_name + ' ' +patient.last_name"></p>
-                                    </li>
-                                </ul>
+        <div id="order-detail-content" class="pt-5">
 
-                                <!-- پیام‌ها -->
-                                <p v-else-if="patients.length && !loading">نتیجه‌ای یافت نشد.</p>
-                                <p v-if="loading">در حال جستجو...</p>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div id="order-detail-content">
 
             {% include 'prescription_module/prescription_basket_content.html' %}
 
         </div>
     </form>
+
+
+
+    <div id="app3" class="col-sm-12 pt-4">
+        <div class="card">
+            <div class="card-header">
+                <label class="pull-right">
+                    {{ search_form }}
+                </label>
+                <h5>مشخصات نسخه ها</h5>
+                <span>از این قسمت دکتر عزیز، میتوانید تمامی نسخه های ثبت شده را مشاهده نمایید.</span>
+
+                <div class="card-body row">
+                    <div class="col-sm-12 col-lg-12 col-xl-12">
+                        <div class="table-responsive">
+                            <div id="advance-2_filter" class="dataTables_filter">
+
+                            </div>
+                            <table class="table">
+                                <thead class="table-primary">
+
+                                <tr>
+                                    <th scope="col">شناسه نسخه</th>
+                                    <th scope="col">نام پزشک</th>
+                                    <th scope="col">نام بیمار</th>
+                                    <th scope="col">تاریخ ایجاد شده</th>
+                                    <th scope="col">نهایی شده/ نشده</th>
+                                    <th scope="col">جزئیات</th>
+                                </tr>
+                                </thead>
+                                <tbody id="box">
+                                <tr v-for="data in random_lists">
+                                    <td v-text="data.id"></td>
+                                    <td v-text="data.doctor"></td>
+                                    <td v-text="data.patient"></td>
+                                    <td v-text="data.created_date"></td>
+                                    <td v-if="data.is_submitted === true">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="25px" height="25px"
+                                             viewBox="0 0 24 24" fill="none">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                               stroke-linejoin="round"/>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path opacity="0.4"
+                                                      d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                                      fill="#007d99"/>
+                                                <path d="M10.5795 15.5801C10.3795 15.5801 10.1895 15.5001 10.0495 15.3601L7.21945 12.5301C6.92945 12.2401 6.92945 11.7601 7.21945 11.4701C7.50945 11.1801 7.98945 11.1801 8.27945 11.4701L10.5795 13.7701L15.7195 8.6301C16.0095 8.3401 16.4895 8.3401 16.7795 8.6301C17.0695 8.9201 17.0695 9.4001 16.7795 9.6901L11.1095 15.3601C10.9695 15.5001 10.7795 15.5801 10.5795 15.5801Z"
+                                                      fill="#007d99"/>
+                                            </g>
+
+                                        </svg>
+                                    <td v-if="data.is_submitted === false">
+                                        <svg viewBox="-3.2 -3.2 38.40 38.40" version="1.1"
+                                             xmlns="http://www.w3.org/2000/svg" width="25px" height="25px"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"
+                                               transform="translate(7.68,7.68), scale(0.52)">
+                                                <rect x="-3.2" y="-3.2" width="38.40" height="38.40" rx="19.2"
+                                                      fill="#007d99" strokewidth="0"></rect>
+                                            </g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                               stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier"><title>cross-circle</title>
+                                                <desc>Created with Sketch Beta.</desc>
+                                                <defs></defs>
+                                                <g id="Page-1" stroke="none" stroke-width="1" fill="none"
+                                                   fill-rule="evenodd" sketch:type="MSPage">
+                                                    <g id="Icon-Set-Filled" sketch:type="MSLayerGroup"
+                                                       transform="translate(-570.000000, -1089.000000)" fill="#99cbd6">
+                                                        <path d="M591.657,1109.24 C592.048,1109.63 592.048,1110.27 591.657,1110.66 C591.267,1111.05 590.633,1111.05 590.242,1110.66 L586.006,1106.42 L581.74,1110.69 C581.346,1111.08 580.708,1111.08 580.314,1110.69 C579.921,1110.29 579.921,1109.65 580.314,1109.26 L584.58,1104.99 L580.344,1100.76 C579.953,1100.37 579.953,1099.73 580.344,1099.34 C580.733,1098.95 581.367,1098.95 581.758,1099.34 L585.994,1103.58 L590.292,1099.28 C590.686,1098.89 591.323,1098.89 591.717,1099.28 C592.11,1099.68 592.11,1100.31 591.717,1100.71 L587.42,1105.01 L591.657,1109.24 L591.657,1109.24 Z M586,1089 C577.163,1089 570,1096.16 570,1105 C570,1113.84 577.163,1121 586,1121 C594.837,1121 602,1113.84 602,1105 C602,1096.16 594.837,1089 586,1089 L586,1089 Z"
+                                                              id="cross-circle" sketch:type="MSShapeGroup"></path>
+                                                    </g>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </td>
+                                    <td>
+                                        <a :href=`detail/${data.id}`>
+                                            جزییات</a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <p class="pt-5 pb-5" v-if="random_lists.length === 0">هیچ داده‌ای موجود نیست.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-sm-12 col-lg-12 col-xl-12">
+                    <div class="tab-content" id="v-pills-tabContent">
+                        <ul class="pagination justify-content-center pagination-primary"
+                            v-if="next !== null || previous !== null">
+
+                            <li class="page-item">
+                                <button class="page-link" v-if="previous" @click="getData(previous)">
+                                    قبلی
+                                </button>
+                            </li>
+
+                            <button
+                                    class="page-link page-item font-primary"
+                                    v-for="page in page_numbers"
+                                    v-text="page"
+                                    @click="goToPage(page)"
+                            >
+                            </button>
+
+                            <li class="page-item">
+                                <button class="page-link" v-if="next" @click="getData(next)">
+                                    بعدی
+                                </button>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
 
 

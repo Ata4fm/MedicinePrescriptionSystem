@@ -188,8 +188,3 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-WKHTMLTOPDF_CMD_OPTIONS = {
-    'quiet': True,
-    'encoding': 'UTF-8',
-    'no-outline': True,  # حذف outline در PDF
-}

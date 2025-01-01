@@ -7,6 +7,48 @@
                     <div class="card-header pb-0">
                         <h5>نسخه دارو</h5>
                     </div>
+                <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card-body">
+                        <div class="row">
+                            <div id="app5" class="pt-5" style="display: flex; align-items: center; gap: 10px;">
+                                <!-- فیلد جستجو -->
+                                <input
+
+                                        id="patient"
+                                        name="patient"
+                                        class="form-control"
+                                        style="width: 150pt"
+                                        type="text"
+                                        v-model="search"
+                                        @input="getData"
+                                        placeholder="کد ملی یا نام بیمار را وارد کنید"
+                                />
+
+
+                                <!-- لیست نتایج جستجو -->
+                                <ul v-if="patients">
+                                    <li v-for="patient in patients" :key="patient.code" @click="selectPatient(patient)">
+                                        <p style="cursor: pointer"
+                                           v-text="patient.code + ' - ' + patient.first_name + ' ' +patient.last_name"></p>
+                                    </li>
+                                </ul>
+
+                                <!-- پیام‌ها -->
+                                <p v-else-if="patients.length && !loading">نتیجه‌ای یافت نشد.</p>
+                                <p v-if="loading">در حال جستجو...</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="order-history table-responsive wishlist">
