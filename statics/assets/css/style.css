@@ -27,6 +27,41 @@ body {
     text-align: right;
 }
 
+#global-loader {
+    position: fixed;
+    z-index: 50000;
+    background: white;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+.loader-img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    top: 43%;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+.login-img {
+    position: relative;
+    background-image: url(statics/assets/images/bg2.jpg);
+}
+.login-img {
+    height: 100%;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-table;
+}
+
 table {
     display: table;
     border-collapse: separate;
@@ -52302,6 +52337,7 @@ svg * {
     stroke-width: 1.8px !Important;
 
 }
+
 
 
 /*# sourceMappingURL=style.css.map */

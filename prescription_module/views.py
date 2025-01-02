@@ -72,6 +72,11 @@ class PatientSearchAPIView(APIView):
 class PrescriptionView(TemplateView):
     template_name = 'prescription_module/prescription.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser or not request.user.is_authenticated:
+            return redirect('home')
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['search_form'] = SearchForm

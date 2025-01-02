@@ -14,10 +14,15 @@ new Vue({
         this.getData();
     },
     methods: {
-        getData(url = "/api/patients/") {
+        getData(url = "/api/patients/?") {
             var self = this;
+            if(!url.includes("http")){
+            url = "http://" + window.location.host + url
+            }
+            let myurl = new URL(url);
             if (self.search) {
-                url += `?search=${self.search}`;
+                myurl.searchParams.set("search", self.search)
+                url = myurl.href
             }
             $.get(url)
                 .done(function (response) {
@@ -26,8 +31,8 @@ new Vue({
                     self.previous = response.previous;
 
 
-                    const urlParams = new URLSearchParams(url.split('?')[1]);
-                    self.current_page = urlParams.get('page') ? parseInt(urlParams.get('page')) : 1;
+
+                    self.current_page = myurl.searchParams.get('page') ? parseInt(myurl.searchParams.get('page')) : 1;
 
                     self.total_pages = Math.ceil(response.count / 10);
                     self.page_numbers = Array.from({length: self.total_pages}, (_, i) => i + 1);
@@ -44,9 +49,10 @@ new Vue({
             }
             this.getData(url);
         },
-        nextPage() {
+        nextPage(page) {
             if (this.next) {
-                this.getData(this.next);
+                let url = `/api/medicines/?page=${page+1}`;
+                this.getData(url);
             }
         },
         previousPage() {
@@ -81,11 +87,9 @@ new Vue({
     methods: {
         getData(url = "/api/medicines/?") {
             var self = this;
-            console.log(url)
             if(!url.includes("http")){
             url = "http://" + window.location.host + url
             }
-            console.log(url)
             let myurl = new URL(url);
             if (self.search) {
                 myurl.searchParams.set("search", self.search)
